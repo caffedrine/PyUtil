@@ -1,5 +1,5 @@
 #
-#   Filename    : main.py
+#   Filename    : SerialService.py
 #   Created on  : Jun, 2018
 #   Author      : Alex C.
 #   Description : Serial port wrapper
@@ -29,6 +29,12 @@ class SerialPort:
 
         # Also try to connect
         self.connect()
+
+        # Callback function
+        self.__recv_callback_func = None
+
+        # Count the time to reconect
+        self.__start_time = 0
 
     def read(self, buff_len):
         if not self.is_alive():
@@ -100,36 +106,36 @@ class SerialPort:
     def get_baud_rate(self):
         return self.__baud_rate
 
+    def set_recv_callback(self, recv_callback_func):
+        self.__recv_callback_func = recv_callback_func
+
     # This will also keep the connection alive or reconnect in case of lost/broken connection
     def start_listener(self, callback_recv):
+        self.__recv_callback_func = callback_recv
         while True:
-            if self.__hSerial is not None and self.is_alive() is True:
-                # if some data is available
-                # if self.is_data_available() > 0:
-                    # Read data and pass it via callback function if available
-                try:
-                    if self.is_data_available() > 0:
-                        recv_data = self.read(64)
-                        if recv_data == -1:
-                            continue
-                        else:
-                            callback_recv(self, recv_data)
+            time.sleep(0.01)
+            self.Tick()
 
-                except Exception as e:
-                    self.close()
-                    self.__set_last_error(str(e))
-
-                # Reset loop to prevent reconnect
-                continue
-
+    def Tick(self):
+        if self.__hSerial is not None and self.is_alive() is True:
+            # Read data and pass it via callback function if available
+            try:
+                if self.is_data_available() > 0:
+                    recv_data = self.read(512)
+                    if len(recv_data) > 0 and self.__recv_callback_func is not None:
+                        self.__recv_callback_func(self, str(recv_data, "utf-8"))
+            except Exception as e:
+                # self.close()
+                self.__set_last_error(str(e))
+        elif (time.time() - self.__start_time) > RECONNECT_ATTEMPT_S:
+            self.__start_time = time.time()
             # This code is reached if connection to given port failed
             dbg("[SerialService] Attempting to connect to %s with baud %s..." % (str(self.__port_name), str(self.__baud_rate)))
             if self.connect() is False:
                 dbg("failed\n", alert=1)
                 dbg("[SerialService] ERROR: " + self.get_last_error() + "\n", alert=1)
                 dbg("[SerialService] I will try again in " + str(RECONNECT_ATTEMPT_S) + " seconds...\n", alert=1)
-                time.sleep(RECONNECT_ATTEMPT_S)
-                continue
+                return
             dbg("done\n")
 
     def start_listener_background(self, recv_callback):
