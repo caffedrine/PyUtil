@@ -28,6 +28,35 @@ def HexToByte(hexStr):
     return ''.join(bytes)
 
 
+def FileGetContent(file):
+    with open(file, 'r') as filehandle:
+        data = filehandle.read()
+        return data
+
+
+def FileWrite(file, content):
+    with open(file, 'w') as filehandle:
+        filehandle.write(content)
+
+
+def FileAppend(file, content):
+    with open(file, 'a') as filehandle:
+        filehandle.write(content)
+
+
+def FileExists(file):
+    import os
+    exists = os.path.isfile(file)
+    if exists:
+        return True
+    else:
+        return False
+
+
+def Timestamp():
+    return datetime.datetime.fromtimestamp(time.time()).strftime('%H:%M:%S.%f')[:-3]
+
+
 def log(str_text):
     st = datetime.datetime.fromtimestamp(time.time()).strftime('%H:%M:%S.%f')[:-3]
     formated_str = ("[%s] %s\n" % (st, str_text))
