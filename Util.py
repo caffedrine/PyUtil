@@ -28,25 +28,25 @@ def HexToByte(hexStr):
     return ''.join(bytes)
 
 
-def FileGetContent(file):
-    with open(file, 'r') as filehandle:
+def FileGetContent(filename):
+    with open(filename, 'r') as filehandle:
         data = filehandle.read()
         return data
 
 
-def FileWrite(file, content):
-    with open(file, 'w') as filehandle:
+def FileWrite(filename, content):
+    with open(filename, 'w') as filehandle:
         filehandle.write(content)
 
 
-def FileAppend(file, content):
-    with open(file, 'a') as filehandle:
+def FileAppend(filename, content):
+    with open(filename, 'a') as filehandle:
         filehandle.write(content)
 
 
-def FileExists(file):
+def FileExists(filename):
     import os
-    exists = os.path.isfile(file)
+    exists = os.path.isfile(filename)
     if exists:
         return True
     else:
@@ -54,18 +54,18 @@ def FileExists(file):
 
 
 def Timestamp():
-    return datetime.datetime.fromtimestamp(time.time()).strftime('%H:%M:%S.%f')[:-3]
+    return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
 
 def log(str_text):
-    st = datetime.datetime.fromtimestamp(time.time()).strftime('%H:%M:%S.%f')[:-3]
+    st = Timestamp()
     formated_str = ("[%s] %s\n" % (st, str_text))
     sys.stdout.write(str(formated_str))
     sys.stdout.flush()
 
 
 def dbg(dbg_str, alert=0):
-    st = datetime.datetime.fromtimestamp(time.time()).strftime('%H:%M:%S.%f')[:-3]
+    st = Timestamp()
     # Print time stamp only if string does not start with '[' or str is capital
     if dbg_str[0].istitle() or dbg_str[0] is '[' or dbg_str[0] is '>':
         sys.stdout.write("[" + st + "] ")
@@ -73,11 +73,10 @@ def dbg(dbg_str, alert=0):
     if alert == 1:
         sys.stdout.write("\033[1;31m")  # Set text to red
         sys.stdout.write(dbg_str)
-        sys.stdout.write("\033[0;0m") # Reset text
-        sys.stdout.flush()
+        sys.stdout.write("\033[0;0m")   # Reset text
     else:
         sys.stdout.write(dbg_str)
-        sys.stdout.flush()
+    sys.stdout.flush()
 
 
 def dbgln(dbg_str, alert=0):
