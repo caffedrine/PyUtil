@@ -34,6 +34,10 @@ def FileGetContent(filename):
         return data
 
 
+def FileGetLines(filename):
+    return [line.strip() for line in open(filename)]
+
+
 def FileWrite(filename, content):
     with open(filename, 'w') as filehandle:
         filehandle.write(content)
@@ -59,8 +63,8 @@ def Timestamp():
 
 def log(str_text):
     st = Timestamp()
-    formated_str = ("[%s] %s\n" % (st, str_text))
-    sys.stdout.write(str(formated_str))
+    formatted_str = ("[%s] %s\n" % (st, str_text))
+    sys.stdout.write(str(formatted_str))
     sys.stdout.flush()
 
 
