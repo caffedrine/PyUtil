@@ -146,7 +146,8 @@ class ShodanService:
                     except Exception as e:
                         dbgln("Error: failed to parse results for dork '{}': {}".format(dork, e), alert=1)
             # Shodan only allows one request per second
-            time.sleep(1)
+            if total_pages > 1:
+                time.sleep(1.1)
 
         except shodan.APIError as e:
             dbgln("Error when fetching results for dork '{}': {}".format(dork, e), alert=1)
