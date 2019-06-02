@@ -50,29 +50,29 @@ ICS_List = [  # ICS(DeviceType="PLC", DeviceName="Older Rockwell PLC's", VendorN
     # ICS(DeviceType="Vendor Specific Protocol", DeviceName="Spectrum Power TG", VendorName="Siemens", TcpPorts={500001, 50018, 50020, 50021, 50025, 50028, 50110, 50111}, UdpPorts={}, Dorks={"port:500001,50018,50020,50021,50025,50028,50110,50111"}, Description="Spectrum Power TG"),
     # ICS(DeviceType="Vendor Specific Protocol", DeviceName="GENe", VendorName="SNC", TcpPorts={38000, 38001, 38011, 38012, 38014, 38015, 38200, 38210, 38301, 38400, 38700, 62900, 62911, 62924, 62930, 62938, 62956, 62957, 62963, 62981, 62982, 62985, 62992, 63012, 63027, 63036, 63041, 63075, 63079, 63082, 63088, 63094, 65443}, UdpPorts={}, Dorks={"port:38000,38001,38011,38012,38014,38015,38200,38210,38301,38400,38700,62900,62911,62924,62930,62938,62956,62957,62963,62981,62982,62985,62992,63012,63027,63036,63041,63075,63079,63082,63088,63094,65443"}, Description="SNC - GENe"),
     # ICS(DeviceType="Vendor Specific Protocol", DeviceName="OASyS DNA", VendorName="Telvent", TcpPorts={5050, 5051, 5052, 5065, 12135, 12137, 56001, 56099}, UdpPorts={}, Dorks={"port:5050,5051,5052,5065,12135,12137,56001,56099"}, Description="Telvent - OASyS DNA"),
-    #
-    # #
-    # # Protocols
-    # #
-    # ICS(DeviceType="Protocol", DeviceName="BACnet/IP", VendorName="", TcpPorts={}, UdpPorts={47808}, Dorks={"port:47808"}, Description="BACnet/IP - 47808"),
-    # ICS(DeviceType="Protocol", DeviceName="DNP3", VendorName="", TcpPorts={20000}, UdpPorts={20000}, Dorks={"port:20000"}, Description="DNP3 - 20000"),
-    # ICS(DeviceType="Protocol", DeviceName="EtherCAT", VendorName="", TcpPorts={}, UdpPorts={34980}, Dorks={"port:34980"}, Description="EtherCAT - 34980"),
-    # ICS(DeviceType="Protocol", DeviceName="Ethernet/IP", VendorName="", TcpPorts={44818}, UdpPorts={2222}, Dorks={"port:44818"}, Description="Ethernet/IP"),
-    # ICS(DeviceType="Protocol", DeviceName="FL-net", VendorName="", TcpPorts={}, UdpPorts={55000, 55001, 55002, 55003}, Dorks={"port:55000,55001,55002,55003"}, Description="FL-net"),
-    # ICS(DeviceType="Protocol", DeviceName="Foundation Fieldbus HSE", VendorName="", TcpPorts={1089, 1090, 1091}, UdpPorts={1089, 1090, 1091}, Dorks={"port:1089,1090,1091"}, Description="Foundation Fieldbus HSE"),
-    # ICS(DeviceType="Protocol", DeviceName="ICCP", VendorName="", TcpPorts={}, UdpPorts={102}, Dorks={"port:102"}, Description="ICCP"), ICS(DeviceType="Protocol", DeviceName="Modbus TCP", VendorName="", TcpPorts={502}, UdpPorts={}, Dorks={"port:502"}, Description="Modbus TCP"),
-    # ICS(DeviceType="Protocol", DeviceName="OPC UA Discovery Server", VendorName="OPC UA", TcpPorts={4840}, UdpPorts={}, Dorks={"port:4840"}, Description="OPC UA Discovery Server - 4840"),
-    # ICS(DeviceType="Protocol", DeviceName="PROFINET", VendorName="", TcpPorts={34962, 34963, 34964}, UdpPorts={34962, 34963, 34964}, Dorks={"port:34962,34963,34964"}, Description="PROFINET"),
-    # ICS(DeviceType="Protocol", DeviceName="ROC PLus", VendorName="", TcpPorts={4000}, UdpPorts={}, Dorks={"port:4000"}, Description="ROC PLus - 4000"),
-    # ICS(DeviceType="Protocol", DeviceName="FINS", VendorName="OMRON", TcpPorts={9600}, UdpPorts={9600}, Dorks={"port:9600"}, Description="FINS (Factory Interface Network Service)"),
-    # ICS(DeviceType="Protocol", DeviceName="HART-IP", VendorName="", TcpPorts={5094}, UdpPorts={5094}, Dorks={"port:5094"}, Description="HART-IP (Highway Addressable Remote Transducer over IP)"),
-    # ICS(DeviceType="Protocol", DeviceName="Unknown", VendorName="Mitsubitshi", TcpPorts={5006}, UdpPorts={5007}, Dorks={"port:5006,5007"}, Description="MELSEC-Q (Mitsubishi electric)"),
-    # ICS(DeviceType="Protocol", DeviceName="Tridium Fox", VendorName="", TcpPorts={1911, 4911}, UdpPorts={}, Dorks={"port:1911,4911"}, Description="Tridium Fox Protocol by Niagara AX"),
-    # ICS(DeviceType="Protocol", DeviceName="PCWORX", VendorName="Phoenix Contact", TcpPorts={1962}, UdpPorts={}, Dorks={"port:1962"}, Description="PCWorx is a protocol and program by Phoenix Contact used by a wide range of industries."),
-    #
-    #
-    # ICS by Header's fingerprint
-    #
+
+    # # #
+    # # # Protocols
+    # # #
+    ICS(DeviceType="Protocol", DeviceName="BACnet/IP", VendorName="", TcpPorts={}, UdpPorts={47808}, Dorks={"port:47808"}, Description="BACnet/IP - 47808"),
+    ICS(DeviceType="Protocol", DeviceName="DNP3", VendorName="", TcpPorts={20000}, UdpPorts={20000}, Dorks={"port:20000"}, Description="DNP3 - 20000"),
+    ICS(DeviceType="Protocol", DeviceName="EtherCAT", VendorName="", TcpPorts={}, UdpPorts={34980}, Dorks={"port:34980"}, Description="EtherCAT - 34980"),
+    ICS(DeviceType="Protocol", DeviceName="Ethernet/IP", VendorName="", TcpPorts={44818}, UdpPorts={2222}, Dorks={"port:44818"}, Description="Ethernet/IP"),
+    ICS(DeviceType="Protocol", DeviceName="FL-net", VendorName="", TcpPorts={}, UdpPorts={55000, 55001, 55002, 55003}, Dorks={"port:55000,55001,55002,55003"}, Description="FL-net"),
+    ICS(DeviceType="Protocol", DeviceName="Foundation Fieldbus HSE", VendorName="", TcpPorts={1089, 1090, 1091}, UdpPorts={1089, 1090, 1091}, Dorks={"port:1089,1090,1091"}, Description="Foundation Fieldbus HSE"),
+    ICS(DeviceType="Protocol", DeviceName="ICCP", VendorName="", TcpPorts={}, UdpPorts={102}, Dorks={"port:102"}, Description="ICCP"), ICS(DeviceType="Protocol", DeviceName="Modbus TCP", VendorName="", TcpPorts={502}, UdpPorts={}, Dorks={"port:502"}, Description="Modbus TCP"),
+    ICS(DeviceType="Protocol", DeviceName="OPC UA Discovery Server", VendorName="OPC UA", TcpPorts={4840}, UdpPorts={}, Dorks={"port:4840"}, Description="OPC UA Discovery Server - 4840"),
+    ICS(DeviceType="Protocol", DeviceName="PROFINET", VendorName="", TcpPorts={34962, 34963, 34964}, UdpPorts={34962, 34963, 34964}, Dorks={"port:34962,34963,34964"}, Description="PROFINET"),
+    ICS(DeviceType="Protocol", DeviceName="ROC PLus", VendorName="", TcpPorts={4000}, UdpPorts={}, Dorks={"port:4000"}, Description="ROC PLus - 4000"),
+    ICS(DeviceType="Protocol", DeviceName="FINS", VendorName="OMRON", TcpPorts={9600}, UdpPorts={9600}, Dorks={"port:9600"}, Description="FINS (Factory Interface Network Service)"),
+    ICS(DeviceType="Protocol", DeviceName="HART-IP", VendorName="", TcpPorts={5094}, UdpPorts={5094}, Dorks={"port:5094"}, Description="HART-IP (Highway Addressable Remote Transducer over IP)"),
+    ICS(DeviceType="Protocol", DeviceName="Unknown", VendorName="Mitsubitshi", TcpPorts={5006}, UdpPorts={5007}, Dorks={"port:5006,5007"}, Description="MELSEC-Q (Mitsubishi electric)"),
+    ICS(DeviceType="Protocol", DeviceName="Tridium Fox", VendorName="", TcpPorts={1911, 4911}, UdpPorts={}, Dorks={"port:1911,4911"}, Description="Tridium Fox Protocol by Niagara AX"),
+    ICS(DeviceType="Protocol", DeviceName="PCWORX", VendorName="Phoenix Contact", TcpPorts={1962}, UdpPorts={}, Dorks={"port:1962"}, Description="PCWorx is a protocol and program by Phoenix Contact used by a wide range of industries."),
+
+    # # #
+    # # # ICS by Header's fingerprint
+    # # #
     ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"all:scada"}, Description=""),
     ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'all:"Logic controller"'}, Description=""),
     ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'all:PLC'}, Description=""),
