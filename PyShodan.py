@@ -89,7 +89,7 @@ class ShodanService:
 
     def PagesNo(self, dork):
         results_no = self.ResultsNo(dork)
-        if results_no < 0:
+        if results_no <= 0:
             return results_no
         return int(results_no / self.__RESULTS_PER_PAGE) + 1
 
