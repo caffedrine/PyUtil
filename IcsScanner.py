@@ -12,11 +12,13 @@ from PyUtil.Util import *
 
 class IcsScanner:
     def __init__(self, IpOrHostname):
-        self.__IP_Addr = None
+        self.__IP_Addrr = None
         self.__Hostname = None
         # Store ping
         self.__PingMeasured = False
         self.__Ping = {'response': False, 'latency': '-1ms'}
+        # nMap handler
+        self.__nm = nmap.PortScanner()
         try:
             socket.inet_aton(IpOrHostname)
             # Provided data is a valid IPv4
@@ -36,6 +38,26 @@ class IcsScanner:
     def GetIpAddress(self):
         return self.__IP_Addr
 
+    def GetOpenTcpPorts(self):
+        ports = GetAllIcsPortsList()['tcp']
+        ports_str = (','.join([str(i) for i in ports]))
+        self.__nm.scan(str(self.__IP_Addr), 'T:' + str(ports_str))
+        ports = []
+        for port in ports:
+            if (self.__nm.has_host(self.__IP_Addr)) and ("tcp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['tcp']) and (self.__nm[self.__IP_Addr]['tcp'][port]['state'] == "open"):
+                ports.append(port)
+        return ports
+
+    def GetOpenUdpPorts(self):
+        ports = GetAllIcsPortsList()['udp']
+        ports_str = (','.join([str(i) for i in ports]))
+        self.__nm.scan(str(self.__IP_Addr), 'U:' + str(ports_str))
+        ports = []
+        for port in ports:
+            if (self.__nm.has_host(self.__IP_Addr)) and ("tcp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['tcp']) and (self.__nm[self.__IP_Addr]['tcp'][port]['state'] == "open"):
+                ports.append(port)
+        return ports
+
     def Ping(self, MesureAgain=False):
         # Do not measure ping again if not specifically requested
         if MesureAgain is False:
@@ -43,7 +65,7 @@ class IcsScanner:
                 return self.__Ping
         # This requires root privileges
         try:
-            ping_resp =  ping(self.__IP_Addr, timeout=3,  count=1)
+            ping_resp =  ping(self.__IP_Addr, timeout=3,  count=3, size=84)
             if  ping_resp.success():
                 self.__Ping['response'] = True
                 self.__Ping['latency'] =  str(ping_resp.rtt_avg_ms) + "ms"
@@ -76,3 +98,5 @@ class IcsScanner:
             return res.query(hostname)
         except:
             return None
+
+
