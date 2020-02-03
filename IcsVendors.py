@@ -22,34 +22,35 @@ class ICS:
             TcpPorts = []
 
 
-ICS_List = [  # ICS(DeviceType="PLC", DeviceName="Older Rockwell PLC's", VendorName="Allen Bradley", TcpPorts={2222}, UdpPorts={}, Dorks={"port:2222"}, Description="Allen Bradley –  Older Rockwell AB PLC5E and SLC5/05"),
-    # ICS(DeviceType="Embedded PC", DeviceName="AB PLC5E or SLC5/05", VendorName="BECKHOFF", TcpPorts={48898}, UdpPorts={}, Dorks={"port:48898"}, Description="BECKHOFF Embedded PC: 48898"),
-    # ICS(DeviceType="PLC", DeviceName="ECL Apex", VendorName="Danfoss", TcpPorts={5050}, UdpPorts={}, Dorks={"port:5050"}, Description="Danfoss ECL Apex: 5050"),
-    # ICS(DeviceType="Generic", DeviceName="QuickPanels", VendorName="GE", TcpPorts={}, UdpPorts={}, Dorks={"port:57176"}, Description="GE - QuickPanels on port 57176"),
-    # ICS(DeviceType="Generic", DeviceName="EHV Series", VendorName="HITACHI", TcpPorts={}, UdpPorts={}, Dorks={"port:3004"}, Description="HITACHI - EHV Series on port 3004"),
-    # ICS(DeviceType="Generic", DeviceName="KV-5000", VendorName="KEYENCE", TcpPorts={}, UdpPorts={}, Dorks={"port:8501"}, Description="KEYENCE - KV-5000 on port 8501"),
-    # ICS(DeviceType="Generic", DeviceName="Koyo Ethernet", VendorName="Koyo", TcpPorts={}, UdpPorts={}, Dorks={"port:28784"}, Description="Koyo - Koyo Ethernet on port 28784"),
-    # ICS(DeviceType="Generic", DeviceName="FEnet", VendorName="LS GLOFA", TcpPorts={}, UdpPorts={}, Dorks={"port:2004"}, Description="LS GLOFA - FEnet on port 2004"),
-    # ICS(DeviceType="Generic", DeviceName="Electric car charger", VendorName="kamstrup", TcpPorts={}, UdpPorts={}, Dorks={"port:1025"}, Description="Mitsubishi - FX on port 1025"),
-    # # ICS(DeviceType="Generic", DeviceName="FX3u Ethernet", VendorName="MITSUBISHI", TcpPorts={}, UdpPorts={}, Dorks={"port:5001"}, Description="MITSUBISHI - FX3u Ethernet on port 5001"),
-    # ICS(DeviceType="Generic", DeviceName="MR-MQ100 Ethernet", VendorName="MITSUBISHI", TcpPorts={4999, 5002}, UdpPorts={}, Dorks={"port:4999,5002"}, Description="MITSUBISHI - MR-MQ100 Ethernet on port 4999"),
-    # ICS(DeviceType="Generic", DeviceName="FP Ethernet", VendorName="Panasonic", TcpPorts={8500, 9094}, UdpPorts={}, Dorks={"port:8500,9094"}, Description="Panasonic - FP Ethernet on port 9094"),
-    # ICS(DeviceType="Generic", DeviceName="HMI", VendorName="Red Lion", TcpPorts={789}, UdpPorts={}, Dorks={"port:789"}, Description="Red Lion - HMI on port 789"),
-    # ICS(DeviceType="Generic", DeviceName="S-BUS Ethernet", VendorName="SAIA", TcpPorts={}, UdpPorts={}, Dorks={"port:5050"}, Description="SAIA - S-BUS Ethernet on port 5050"),
-    # ICS(DeviceType="Generic", DeviceName="XCX 300", VendorName="Schleicher", TcpPorts={}, UdpPorts={}, Dorks={"port:20547"}, Description="Schleicher - XCX 300 on port 20547"),
-    # ICS(DeviceType="Generic", DeviceName="S7", VendorName="Siemens", TcpPorts={}, UdpPorts={}, Dorks={"port:102"}, Description="Siemens - S7 on port 102"),
-    # ICS(DeviceType="Generic", DeviceName="TCP slave", VendorName="Unitronics", TcpPorts={20256, 20257}, UdpPorts={}, Dorks={"port:20256,20257"}, Description="Unitronics - TCP slave on port 20256"),
-    # ICS(DeviceType="Generic", DeviceName="CODESYS – TCP", VendorName="Wago", TcpPorts={}, UdpPorts={}, Dorks={"port:2455"}, Description="Wago - CODESYS – TCP on port 2455"),
-    # # ICS(DeviceType="Generic", DeviceName="MP Series Ethernet", VendorName="YASKAWA", TcpPorts={}, UdpPorts={}, Dorks={"port:10000"}, Description="YASKAWA - MP Series Ethernet on port 10000"),
-    # ICS(DeviceType="Generic", DeviceName="FA-M3 (Ethernet)", VendorName="Yokogawa", TcpPorts={}, UdpPorts={}, Dorks={"port:12289"}, Description="Yokogawa - FA-M3 (Ethernet) on port 12289"),
-    # ICS(DeviceType="Vendor Specific Protocol", DeviceName="Ranger 2003", VendorName="ABB", TcpPorts={10307, 10311, 10364, 10365, 10407, 10409, 10410, 10412, 10414, 10415, 10428, 10431, 10432, 10447, 10449, 10450, 13722, 13724, 13782, 13783, 38589, 38593, 38600, 38971, 39129, 39278}, UdpPorts={}, Dorks={"port:10307,10311,10364,10365,10407,10409,10410,10412,10414,10415,10428,10431,10432,10447,10449,10450,13722,13724,13782,13783,38589,38593,38600,38971,39129,39278"}, Description=""),
-    # ICS(DeviceType="Vendor Specific Protocol", DeviceName="Foxboro DCS FoxApi", VendorName="Foxboro/Invensys", TcpPorts={1541, 45678, 55555}, UdpPorts={45678, 55555}, Dorks={"port:1541,55555,45678"}, Description="Foxboro DCS FoxApi - 55555"),
-    # ICS(DeviceType="Vendor Specific Protocol", DeviceName="Genesis32 GenBroker (TCP)", VendorName="Iconics", TcpPorts={18000}, UdpPorts={}, Dorks={"port:18000"}, Description="Genesis32 GenBroker (TCP) - 18000"),
-    # ICS(DeviceType="Vendor Specific Protocol", DeviceName="Metasys N1", VendorName="Johnson Controls", TcpPorts={11001}, UdpPorts={11001}, Dorks={"port:11001"}, Description="Metasys N1"),
-    # ICS(DeviceType="Vendor Specific Protocol", DeviceName="PI Server", VendorName="OSIsoft", TcpPorts={5450}, UdpPorts={}, Dorks={"port:5450"}, Description="PI Server"),
-    # ICS(DeviceType="Vendor Specific Protocol", DeviceName="Spectrum Power TG", VendorName="Siemens", TcpPorts={500001, 50018, 50020, 50021, 50025, 50028, 50110, 50111}, UdpPorts={}, Dorks={"port:500001,50018,50020,50021,50025,50028,50110,50111"}, Description="Spectrum Power TG"),
-    # ICS(DeviceType="Vendor Specific Protocol", DeviceName="GENe", VendorName="SNC", TcpPorts={38000, 38001, 38011, 38012, 38014, 38015, 38200, 38210, 38301, 38400, 38700, 62900, 62911, 62924, 62930, 62938, 62956, 62957, 62963, 62981, 62982, 62985, 62992, 63012, 63027, 63036, 63041, 63075, 63079, 63082, 63088, 63094, 65443}, UdpPorts={}, Dorks={"port:38000,38001,38011,38012,38014,38015,38200,38210,38301,38400,38700,62900,62911,62924,62930,62938,62956,62957,62963,62981,62982,62985,62992,63012,63027,63036,63041,63075,63079,63082,63088,63094,65443"}, Description="SNC - GENe"),
-    # ICS(DeviceType="Vendor Specific Protocol", DeviceName="OASyS DNA", VendorName="Telvent", TcpPorts={5050, 5051, 5052, 5065, 12135, 12137, 56001, 56099}, UdpPorts={}, Dorks={"port:5050,5051,5052,5065,12135,12137,56001,56099"}, Description="Telvent - OASyS DNA"),
+ICS_List = [
+    # ICS(DeviceType="PLC", DeviceName="Older Rockwell PLC's", VendorName="Allen Bradley", TcpPorts={2222}, UdpPorts={}, Dorks={"port:2222"}, Description="Allen Bradley –  Older Rockwell AB PLC5E and SLC5/05"),
+    ICS(DeviceType="Embedded PC", DeviceName="AB PLC5E or SLC5/05", VendorName="BECKHOFF", TcpPorts={48898}, UdpPorts={}, Dorks={"port:48898"}, Description="BECKHOFF Embedded PC: 48898"),
+    ICS(DeviceType="PLC",     DeviceName="ECL Apex", VendorName="Danfoss", TcpPorts={5050}, UdpPorts={}, Dorks={"port:5050"}, Description="Danfoss ECL Apex: 5050"),
+    ICS(DeviceType="Generic", DeviceName="QuickPanels", VendorName="GE", TcpPorts={}, UdpPorts={}, Dorks={"port:57176"}, Description="GE - QuickPanels on port 57176"),
+    ICS(DeviceType="Generic", DeviceName="EHV Series", VendorName="HITACHI", TcpPorts={}, UdpPorts={}, Dorks={"port:3004"}, Description="HITACHI - EHV Series on port 3004"),
+    ICS(DeviceType="Generic", DeviceName="KV-5000", VendorName="KEYENCE", TcpPorts={}, UdpPorts={}, Dorks={"port:8501"}, Description="KEYENCE - KV-5000 on port 8501"),
+    ICS(DeviceType="Generic", DeviceName="Koyo Ethernet", VendorName="Koyo", TcpPorts={}, UdpPorts={}, Dorks={"port:28784"}, Description="Koyo - Koyo Ethernet on port 28784"),
+    ICS(DeviceType="Generic", DeviceName="FEnet", VendorName="LS GLOFA", TcpPorts={}, UdpPorts={}, Dorks={"port:2004"}, Description="LS GLOFA - FEnet on port 2004"),
+    ICS(DeviceType="Generic", DeviceName="Electric car charger", VendorName="kamstrup", TcpPorts={}, UdpPorts={}, Dorks={"port:1025"}, Description="Mitsubishi - FX on port 1025"),
+    # ICS(DeviceType="Generic", DeviceName="FX3u Ethernet", VendorName="MITSUBISHI", TcpPorts={}, UdpPorts={}, Dorks={"port:5001"}, Description="MITSUBISHI - FX3u Ethernet on port 5001"),
+    ICS(DeviceType="Generic", DeviceName="MR-MQ100 Ethernet", VendorName="MITSUBISHI", TcpPorts={4999, 5002}, UdpPorts={}, Dorks={"port:4999,5002"}, Description="MITSUBISHI - MR-MQ100 Ethernet on port 4999"),
+    ICS(DeviceType="Generic", DeviceName="FP Ethernet", VendorName="Panasonic", TcpPorts={8500, 9094}, UdpPorts={}, Dorks={"port:8500,9094"}, Description="Panasonic - FP Ethernet on port 9094"),
+    ICS(DeviceType="Generic", DeviceName="HMI", VendorName="Red Lion", TcpPorts={789}, UdpPorts={}, Dorks={"port:789"}, Description="Red Lion - HMI on port 789"),
+    ICS(DeviceType="Generic", DeviceName="S-BUS Ethernet", VendorName="SAIA", TcpPorts={}, UdpPorts={}, Dorks={"port:5050"}, Description="SAIA - S-BUS Ethernet on port 5050"),
+    ICS(DeviceType="Generic", DeviceName="XCX 300", VendorName="Schleicher", TcpPorts={}, UdpPorts={}, Dorks={"port:20547"}, Description="Schleicher - XCX 300 on port 20547"),
+    ICS(DeviceType="Generic", DeviceName="S7", VendorName="Siemens", TcpPorts={}, UdpPorts={}, Dorks={"port:102"}, Description="Siemens - S7 on port 102"),
+    ICS(DeviceType="Generic", DeviceName="TCP slave", VendorName="Unitronics", TcpPorts={20256, 20257}, UdpPorts={}, Dorks={"port:20256,20257"}, Description="Unitronics - TCP slave on port 20256"),
+    ICS(DeviceType="Generic", DeviceName="CODESYS – TCP", VendorName="Wago", TcpPorts={}, UdpPorts={}, Dorks={"port:2455"}, Description="Wago - CODESYS – TCP on port 2455"),
+    # ICS(DeviceType="Generic", DeviceName="MP Series Ethernet", VendorName="YASKAWA", TcpPorts={}, UdpPorts={}, Dorks={"port:10000"}, Description="YASKAWA - MP Series Ethernet on port 10000"),
+    ICS(DeviceType="Generic", DeviceName="FA-M3 (Ethernet)", VendorName="Yokogawa", TcpPorts={}, UdpPorts={}, Dorks={"port:12289"}, Description="Yokogawa - FA-M3 (Ethernet) on port 12289"),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="Ranger 2003", VendorName="ABB", TcpPorts={10307, 10311, 10364, 10365, 10407, 10409, 10410, 10412, 10414, 10415, 10428, 10431, 10432, 10447, 10449, 10450, 13722, 13724, 13782, 13783, 38589, 38593, 38600, 38971, 39129, 39278}, UdpPorts={}, Dorks={"port:10307,10311,10364,10365,10407,10409,10410,10412,10414,10415,10428,10431,10432,10447,10449,10450,13722,13724,13782,13783,38589,38593,38600,38971,39129,39278"}, Description=""),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="Foxboro DCS FoxApi", VendorName="Foxboro/Invensys", TcpPorts={1541, 45678, 55555}, UdpPorts={45678, 55555}, Dorks={"port:1541,55555,45678"}, Description="Foxboro DCS FoxApi - 55555"),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="Genesis32 GenBroker (TCP)", VendorName="Iconics", TcpPorts={18000}, UdpPorts={}, Dorks={"port:18000"}, Description="Genesis32 GenBroker (TCP) - 18000"),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="Metasys N1", VendorName="Johnson Controls", TcpPorts={11001}, UdpPorts={11001}, Dorks={"port:11001"}, Description="Metasys N1"),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="PI Server", VendorName="OSIsoft", TcpPorts={5450}, UdpPorts={}, Dorks={"port:5450"}, Description="PI Server"),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="Spectrum Power TG", VendorName="Siemens", TcpPorts={50001, 50018, 50020, 50021, 50025, 50028, 50110, 50111}, UdpPorts={}, Dorks={"port:500001,50018,50020,50021,50025,50028,50110,50111"}, Description="Spectrum Power TG"),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="GENe", VendorName="SNC", TcpPorts={38000, 38001, 38011, 38012, 38014, 38015, 38200, 38210, 38301, 38400, 38700, 62900, 62911, 62924, 62930, 62938, 62956, 62957, 62963, 62981, 62982, 62985, 62992, 63012, 63027, 63036, 63041, 63075, 63079, 63082, 63088, 63094, 65443}, UdpPorts={}, Dorks={"port:38000,38001,38011,38012,38014,38015,38200,38210,38301,38400,38700,62900,62911,62924,62930,62938,62956,62957,62963,62981,62982,62985,62992,63012,63027,63036,63041,63075,63079,63082,63088,63094,65443"}, Description="SNC - GENe"),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="OASyS DNA", VendorName="Telvent", TcpPorts={5050, 5051, 5052, 5065, 12135, 12137, 56001, 56099}, UdpPorts={}, Dorks={"port:5050,5051,5052,5065,12135,12137,56001,56099"}, Description="Telvent - OASyS DNA"),
 
     # # #
     # # # Protocols
@@ -78,7 +79,6 @@ ICS_List = [  # ICS(DeviceType="PLC", DeviceName="Older Rockwell PLC's", VendorN
     ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'all:PLC'}, Description=""),
     ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'all:"wind farm"'}, Description=""),
     ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'all:"modbus"'}, Description=""),
-
     ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Siemens", TcpPorts={}, UdpPorts={}, Dorks={"all:Siemens"}, Description="Siemens - Siemens"),
     ICS(DeviceType="ICS", DeviceName="Generic", VendorName="FATEK", TcpPorts={}, UdpPorts={}, Dorks={"all:fatek"}, Description="FATEK PLCs"),
     ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Adcon", TcpPorts={}, UdpPorts={}, Dorks={"all:adcon"}, Description="Adcon PLCs"),
@@ -121,7 +121,7 @@ ICS_List = [  # ICS(DeviceType="PLC", DeviceName="Older Rockwell PLC's", VendorN
     ICS(DeviceType="ICS", DeviceName="ioLogik", VendorName="Moxa", TcpPorts={}, UdpPorts={}, Dorks={"all:ioLogik"}, Description="Moxa - ioLogik Web Server"),
     ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"all:CherryPy"}, Description="Generic - openerp server:CherryPy"),
     ICS(DeviceType="ICS", DeviceName="IQ3xcite", VendorName="Trend", TcpPorts={}, UdpPorts={}, Dorks={"all:iq3"}, Description="Trend - server:iq3"),
-    ICS(DeviceType="IvCS", DeviceName="ServerView", VendorName="Fujitsu", TcpPorts={}, UdpPorts={}, Dorks={"all:serverview"}, Description="Fujitsu - serverview"),
+    ICS(DeviceType="IvCS",DeviceName="ServerView", VendorName="Fujitsu", TcpPorts={}, UdpPorts={}, Dorks={"all:serverview"}, Description="Fujitsu - serverview"),
     ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Somfy", TcpPorts={}, UdpPorts={}, Dorks={"all:Somfy"}, Description="Somfy - title:Somfy"),
     ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Adcon Telemetry", TcpPorts={}, UdpPorts={}, Dorks={"all:adcon"}, Description="Adcon Telemetry - title:adcon"),
     ICS(DeviceType="ICS", DeviceName="Electrical car charger", VendorName="DIRIS DIGIWARE", TcpPorts={1081, 1082}, UdpPorts={}, Dorks={"Server: servX"}, Description="DIRIS DIGIWARE: Energy measurement and monitoring system"),
@@ -130,6 +130,38 @@ ICS_List = [  # ICS(DeviceType="PLC", DeviceName="Older Rockwell PLC's", VendorN
     ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'all:"NET ARM Web Server/1.00"'}, Description="Generic - NET ARM Web Server/1.00"),
 
 ]
+
+
+def GetAllIcsPortsList():
+    global ICS_List
+    result = {'tcp': None, 'udp': None}
+    tcp_ports = []
+    udp_ports = []
+
+    for ics in ICS_List:
+        for tcp_port in ics.TcpPorts:
+            tcp_ports.append(tcp_port)
+        for udp_port in ics.UdpPorts:
+            udp_ports.append(udp_port)
+
+    # Sort ports
+    tcp_ports.sort()
+    udp_ports.sort()
+
+    result['tcp'] = tcp_ports
+    result['udp'] = udp_ports
+    return result
+
+
+def PortToVendorDescription(protocol, port):
+    global ICS_List
+    for ics in ICS_List:
+        if protocol is 'tcp':
+            if port in ics.TcpPorts:
+                return ics.Description
+        else:
+            if port in ics.UdpPorts:
+                return ics.Description
 
 
 def PrintIcsList(ICS_List=None):

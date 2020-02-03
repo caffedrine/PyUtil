@@ -69,6 +69,7 @@ class ShodanResult:
         csv_header = ""
         for attribute in result_attributes:
             csv_header += attribute + ","
+        csv_header += "\n"
         return csv_header
 
     def GetCsvRow(self):
@@ -76,7 +77,7 @@ class ShodanResult:
         result_values = [attr for attr in self.__dict__.values() ] # if not attr.startswith('__')
         for value in result_values:
             csv_rows += str(value) + ","
-        return csv_rows
+        return csv_rows + "\n"
 
 # Shodan service handler
 class ShodanService:
