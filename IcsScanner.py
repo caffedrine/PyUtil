@@ -2,12 +2,12 @@ import os
 import sys
 import time
 import nmap
-from pythonping import ping
 import socket
 import dns.resolver
 import dns.reversename
+from pythonping import ping
+from contextlib import closing
 from PyUtil.IcsVendors import *
-from PyUtil.Util import *
 
 
 class IcsScanner:
@@ -41,12 +41,12 @@ class IcsScanner:
     def GetOpenTcpPorts(self):
         ports = GetAllIcsPortsList()['tcp']
         ports_str = (','.join([str(i) for i in ports]))
-        self.__nm.scan(str(self.__IP_Addr), 'T:' + str(ports_str))
-        ports = []
+        self.__nm.scan(str(self.__IP_Addr), 'T:' + str(ports_str), arguments="")
+        open_ports = []
         for port in ports:
             if (self.__nm.has_host(self.__IP_Addr)) and ("tcp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['tcp']) and (self.__nm[self.__IP_Addr]['tcp'][port]['state'] == "open"):
-                ports.append(port)
-        return ports
+                open_ports.append(port)
+        return open_ports
 
     def GetOpenUdpPorts(self):
         ports = GetAllIcsPortsList()['udp']
@@ -78,6 +78,14 @@ class IcsScanner:
         # Set a flag indicating that ping was already measured
         self.__PingMeasured = True
         return self.__Ping
+
+    def IsPortOpen(self, port):
+        with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as sock:
+            sock.settimeout(2)
+            if sock.connect_ex((self.__IP_Addr, port)) == 0:
+                return True
+            else:
+                return False
 
     def __Ip2Hostname(self, ip):
         try:

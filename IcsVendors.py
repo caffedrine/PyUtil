@@ -170,4 +170,4 @@ def PrintIcsList(ICS_List=None):
     for tmpIcs in ICS_List:
         ics = tmpIcs
         i += 1
-        print({"}. {"}.format(i, ics.Description))
+        print("[%d] - %s"%(i, ics.Description))

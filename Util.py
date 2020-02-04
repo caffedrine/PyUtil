@@ -71,6 +71,8 @@ def FileExists(filename):
 def Timestamp():
     return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
+def Datetime():
+    return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 
 def log(str_text):
     st = Timestamp()
