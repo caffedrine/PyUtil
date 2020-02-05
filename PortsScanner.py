@@ -11,7 +11,7 @@ from PyUtil.IcsVendors import *
 
 # Util: https://pypi.org/project/python-nmap/
 
-class IcsScanner:
+class PortsScanner:
     def __init__(self, IpOrHostname):
         self.__IP_Addrr = None
         self.__Hostname = None
@@ -39,25 +39,24 @@ class IcsScanner:
     def GetIpAddress(self):
         return self.__IP_Addr
 
-    def GetOpenTcpPorts(self):
-        ports = GetAllIcsPortsList()['tcp']
-        ports_str = (','.join([str(i) for i in ports]))
-        self.__nm.scan(str(self.__IP_Addr), 'T:' + str(ports_str), arguments="")
+    def GetDefaultOpenTcpPorts(self):
+        self.__nm.scan( hosts=str(self.__IP_Addr), arguments="-F")
         open_ports = []
-        for port in ports:
-            if (self.__nm.has_host(self.__IP_Addr)) and ("tcp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['tcp']) and (self.__nm[self.__IP_Addr]['tcp'][port]['state'] == "open"):
-                open_ports.append(port)
+        if (self.__nm.has_host(self.__IP_Addr)) and ("tcp" in self.__nm[self.__IP_Addr]):
+            for port in self.__nm[self.__IP_Addr]['tcp']:
+                if (self.__nm[self.__IP_Addr]['tcp'][port]['state'] == "open"):
+                    open_ports.append(port)
         return open_ports
 
-    def GetOpenUdpPorts(self):
-        ports = GetAllIcsPortsList()['udp']
-        ports_str = (','.join([str(i) for i in ports]))
-        self.__nm.scan(str(self.__IP_Addr), 'U:' + str(ports_str))
-        ports = []
-        for port in ports:
-            if (self.__nm.has_host(self.__IP_Addr)) and ("tcp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['tcp']) and (self.__nm[self.__IP_Addr]['tcp'][port]['state'] == "open"):
-                ports.append(port)
-        return ports
+    def GetDefaultOpenUdpPorts(self):
+        # TODO: Implement
+        self.__nm.scan( hosts=str(self.__IP_Addr), arguments="")
+        open_ports = []
+        if (self.__nm.has_host(self.__IP_Addr)) and ("udp" in self.__nm[self.__IP_Addr]):
+            for port in self.__nm[self.__IP_Addr]['udp']:
+                if (self.__nm[self.__IP_Addr]['udp'][port]['state'] == "open"):
+                    open_ports.append(port)
+        return open_ports
 
     def Ping(self, MesureAgain=False):
         # Do not measure ping again if not specifically requested
