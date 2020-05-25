@@ -69,7 +69,7 @@ ICS_List = [
     ICS(DeviceType="Protocol", DeviceName="HART-IP", VendorName="", TcpPorts={5094}, UdpPorts={5094}, Dorks={"port:5094"}, Description="HART-IP (Highway Addressable Remote Transducer over IP)"),
     ICS(DeviceType="Protocol", DeviceName="Unknown", VendorName="Mitsubitshi", TcpPorts={5006}, UdpPorts={5007}, Dorks={"port:5006,5007"}, Description="MELSEC-Q (Mitsubishi electric)"),
     ICS(DeviceType="Protocol", DeviceName="Tridium Fox", VendorName="", TcpPorts={1911, 4911}, UdpPorts={}, Dorks={"port:1911,4911"}, Description="Tridium Fox Protocol by Niagara AX"),
-    ICS(DeviceType="Protocol", DeviceName="PCWORX", VendorName="Phoenix Contact", TcpPorts={1962}, UdpPorts={}, Dorks={"port:1962"}, Description="PCWorx is a protocol and program by Phoenix Contact used by a wide range of industries."),
+    ICS(DeviceType="Protocol", DeviceName="PCWORX", VendorName="Phoenix Contact", TcpPorts={1962}, UdpPorts={}, Dorks={"port:1962"}, Description="PCWorx by Phoenix Contact"),
 
     # # #
     # # # ICS by Header's fingerprint
@@ -157,11 +157,12 @@ def PortToVendorDescription(protocol, port):
     global ICS_List
     for ics in ICS_List:
         if protocol is 'tcp':
-            if port in ics.TcpPorts:
+            if int(port) in ics.TcpPorts:
                 return ics.Description
         else:
-            if port in ics.UdpPorts:
+            if int(port) in ics.UdpPorts:
                 return ics.Description
+    return None
 
 
 def PrintIcsList(ICS_List=None):

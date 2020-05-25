@@ -8,6 +8,7 @@
 import sys
 import time
 import datetime
+import socket
 
 # Enable debug messages
 DBG_ENB = True
@@ -71,8 +72,33 @@ def FileExists(filename):
 def Timestamp():
     return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
+
 def Datetime():
     return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+
+
+def IsValidIPv4(address):
+    try:
+        socket.inet_pton(socket.AF_INET, address)
+    except AttributeError:  # no inet_pton here, sorry
+        try:
+            socket.inet_aton(address)
+        except socket.error:
+            return False
+        return address.count('.') == 3
+    except socket.error:  # not a valid address
+        return False
+
+    return True
+
+
+def IsValidIPv6(address):
+    try:
+        socket.inet_pton(socket.AF_INET6, address)
+    except socket.error:  # not a valid address
+        return False
+    return True
+
 
 def log(str_text):
     st = Timestamp()
