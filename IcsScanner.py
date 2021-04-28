@@ -11,6 +11,7 @@ from PyUtil.IcsVendors import *
 
 # Util: https://pypi.org/project/python-nmap/
 
+
 class IcsScanner:
     def __init__(self, IpOrHostname):
         self.__IP_Addrr = None

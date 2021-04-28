@@ -4,7 +4,7 @@
 #   Author      : Alex C.
 #   Description : Util functions
 #
-
+import re
 import sys
 import time
 import datetime
@@ -75,6 +75,23 @@ def Timestamp():
 
 def Datetime():
     return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+
+
+def ExtractIPv4(input_str):
+    pattern = re.compile(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})')
+    result = pattern.search(input_str)
+    if result:
+        return result[0]
+    else:
+        return None
+
+
+def ContainIPv4(input_str):
+    pattern = re.compile(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})')
+    if pattern.search(input_str):
+        return True
+    else:
+        return False
 
 
 def IsValidIPv4(address):
