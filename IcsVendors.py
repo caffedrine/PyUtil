@@ -22,6 +22,29 @@ class ICS:
             TcpPorts = []
 
 
+ICS_List_Shodan = [
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={502}, UdpPorts={502}, Dorks={"all:ics"}, Description="Modbus get all ICS devices"),
+]
+
+ICS_List_Essentials = [
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={502}, UdpPorts={502}, Dorks={"port:502"}, Description="Modbus over TCP IP on port 502"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={102}, UdpPorts={102}, Dorks={"port:102"}, Description="S7 (S7 Communication)"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={20000}, UdpPorts={20000}, Dorks={"port:20000 source address"}, Description="DNP3 (Distributed Network Protocol)"),
+    ICS(DeviceType="PLC", DeviceName="Niagara", VendorName="Tridium", TcpPorts={1911,4911}, UdpPorts={1911,4911}, Dorks={"port:1911,4911 product:Niagara"}, Description="The Fox protocol, developed as part of the Niagara framework from Tridium"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={47808}, UdpPorts={47808}, Dorks={"port:47808"}, Description="BACnet is a communications protocol for building automation and control networks."),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={44818}, UdpPorts={44818}, Dorks={"port:44818"}, Description="EtherNet/IP was introduced in 2001 and is an industrial Ethernet network solution available for manufacturing automation."),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="General Electric ", TcpPorts={8245,18246}, UdpPorts={8245,18246}, Dorks={"port:18245,18246 product:\"general electric\""}, Description="Service Request Transport Protocol (GE-SRTP) "),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="Fieldbus", TcpPorts={5094}, UdpPorts={5094}, Dorks={"port:5094 hart-ip"}, Description="The HART Communications Protocol (Highway Addressable Remote Transducer Protocol)"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="Phoenix Contact", TcpPorts={1962}, UdpPorts={1962}, Dorks={"port:1962 PLC"}, Description="PCWorx is a protocol and program by Phoenix Contact"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="Mitsubichi", TcpPorts={5006,5007}, UdpPorts={5006,5007}, Dorks={"port:5006,5007 product:mitsubishi"}, Description="MELSEC-Q Series use a proprietary network protocol for communication"),
+    ICS(DeviceType="PLC", DeviceName="G306a", VendorName="Red Lion Controls", TcpPorts={789}, UdpPorts={789}, Dorks={"port:789 product:\"Red Lion Controls\""}, Description="The protocol the Crimson v3.0 desktop software uses when communicating with the Red Lion Controls G306a human machine interface (HMI)."),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="CODESYS", TcpPorts={2455}, UdpPorts={2455}, Dorks={"port:2455 operating system"}, Description="CODESYS"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={2404}, UdpPorts={2404}, Dorks={"port:2404 asdu address"}, Description="IEC 60870 part 5 is one of the IEC 60870 set of standards which define systems used for SCADA in electrical engineering and power system automation applications."),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={20547}, UdpPorts={20547}, Dorks={"port:20547 PLC"}, Description="ProConOS is a high performance PLC run time engine designed for both embedded and PC based control applications."),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={3671}, UdpPorts={3671}, Dorks={"KNXnet/IP"}, Description="KNXnet/IP is the protocol used to extend the KNX bus across an IP network"),
+
+]
+
 ICS_List = [
     # ICS(DeviceType="PLC", DeviceName="Older Rockwell PLC's", VendorName="Allen Bradley", TcpPorts={2222}, UdpPorts={}, Dorks={"port:2222"}, Description="Allen Bradley –  Older Rockwell AB PLC5E and SLC5/05"),
     ICS(DeviceType="Embedded PC", DeviceName="AB PLC5E or SLC5/05", VendorName="BECKHOFF", TcpPorts={48898}, UdpPorts={}, Dorks={"port:48898"}, Description="BECKHOFF Embedded PC: 48898"),
@@ -51,6 +74,7 @@ ICS_List = [
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="Spectrum Power TG", VendorName="Siemens", TcpPorts={50001, 50018, 50020, 50021, 50025, 50028, 50110, 50111}, UdpPorts={}, Dorks={"port:500001,50018,50020,50021,50025,50028,50110,50111"}, Description="Spectrum Power TG"),
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="GENe", VendorName="SNC", TcpPorts={38000, 38001, 38011, 38012, 38014, 38015, 38200, 38210, 38301, 38400, 38700, 62900, 62911, 62924, 62930, 62938, 62956, 62957, 62963, 62981, 62982, 62985, 62992, 63012, 63027, 63036, 63041, 63075, 63079, 63082, 63088, 63094, 65443}, UdpPorts={}, Dorks={"port:38000,38001,38011,38012,38014,38015,38200,38210,38301,38400,38700,62900,62911,62924,62930,62938,62956,62957,62963,62981,62982,62985,62992,63012,63027,63036,63041,63075,63079,63082,63088,63094,65443"}, Description="SNC - GENe"),
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="OASyS DNA", VendorName="Telvent", TcpPorts={5050, 5051, 5052, 5065, 12135, 12137, 56001, 56099}, UdpPorts={}, Dorks={"port:5050,5051,5052,5065,12135,12137,56001,56099"}, Description="Telvent - OASyS DNA"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={3671}, UdpPorts={3671}, Dorks={"KNXnet/IP"}, Description="KNXnet/IP is the protocol used to extend the KNX bus across an IP network"),
 
     # # #
     # # # Protocols
