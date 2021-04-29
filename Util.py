@@ -62,7 +62,7 @@ def FileAppend(filename, content):
 
 def FileExists(filename):
     import os
-    exists = os.path.isfile(filename)
+    exists = os.path.exists(filename)
     if exists:
         return True
     else:
@@ -167,26 +167,46 @@ def RemoveHtmlTags(text):
 
 def DownloadWebPage(page_url):
     import requests
+    import html
+
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
     response = requests.get(page_url, headers=headers)
-    return str(response.content)
+    return html.unescape(str(response.content))
 
 
-def GetIpOrganization(addr):
-    res = DownloadWebPage('https://ipinfo.io/' + addr)
+def GetIpInfo(addr):
+    html = DownloadWebPage('https://ipinfo.io/' + addr)
 
-    # parse html result ()
-    if "<dt class=\"col-sm-4 mb-md-3\">Organization</dt>" not in res:
-        return "unknown"
-    res = str(res).split("<dt class=\"col-sm-4 mb-md-3\">Organization</dt>")[1]
-    res = res.replace("<dd class=\"col-sm-8 mb-md-9\">", "")
-    res = res.split("</dd>")[0]
-    res = RemoveHtmlTags(res)
-    res = res.replace("\\n", "")
-    res = res.replace("\t", "")
-    while "  " in res:
-        res = res.replace("  ", " ")
-    res = res.strip()
-    return res
+    result = {}
+    result['org'] = "unknown"
+    result['asn'] = "unknown"
+
+    # Get organization
+    if "<dt class=\"col-sm-4 mb-md-3\">Organization</dt>" in html:
+        res = str(html).split("<dt class=\"col-sm-4 mb-md-3\">Organization</dt>")[1]
+        res = res.replace("<dd class=\"col-sm-8 mb-md-9\">", "")
+        res = res.split("</dd>")[0]
+        res = RemoveHtmlTags(res)
+        res = res.replace("\\n", "")
+        res = res.replace("\t", "")
+        while "  " in res:
+            res = res.replace("  ", " ")
+        res = res.strip()
+        result['org'] = res
+
+    # Get ASN
+    if "<dt class=\"col-sm-4 mb-md-3\">ASN</dt>" in html:
+        res = str(html).split("<dt class=\"col-sm-4 mb-md-3\">ASN</dt>")[1]
+        res = res.replace("<dd class=\"col-sm-8 mb-md-9\">", "")
+        res = res.split("</dd>")[0]
+        res = RemoveHtmlTags(res)
+        res = res.replace("\\n", "")
+        res = res.replace("\t", "")
+        while "  " in res:
+            res = res.replace("  ", " ")
+        res = res.strip()
+        result['asn'] = res
+
+    return result
 

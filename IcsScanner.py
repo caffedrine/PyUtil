@@ -40,7 +40,7 @@ class IcsScanner:
     def GetIpAddress(self):
         return self.__IP_Addr
 
-    def GetOpenTcpPorts(self):
+    def GetOpenTcpPorts(self) -> list:
         ports = GetAllIcsPortsList()['tcp']
         ports_str = (','.join([str(i) for i in ports]))
         self.__nm.scan(str(self.__IP_Addr), 'T:' + str(ports_str), arguments="")
