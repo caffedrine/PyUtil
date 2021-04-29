@@ -3,6 +3,7 @@
 #
 
 import sys
+from typing import Union
 
 
 class ICS:
@@ -74,7 +75,7 @@ ICS_List = [
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="Spectrum Power TG", VendorName="Siemens", TcpPorts={50001, 50018, 50020, 50021, 50025, 50028, 50110, 50111}, UdpPorts={}, Dorks={"port:500001,50018,50020,50021,50025,50028,50110,50111"}, Description="Spectrum Power TG"),
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="GENe", VendorName="SNC", TcpPorts={38000, 38001, 38011, 38012, 38014, 38015, 38200, 38210, 38301, 38400, 38700, 62900, 62911, 62924, 62930, 62938, 62956, 62957, 62963, 62981, 62982, 62985, 62992, 63012, 63027, 63036, 63041, 63075, 63079, 63082, 63088, 63094, 65443}, UdpPorts={}, Dorks={"port:38000,38001,38011,38012,38014,38015,38200,38210,38301,38400,38700,62900,62911,62924,62930,62938,62956,62957,62963,62981,62982,62985,62992,63012,63027,63036,63041,63075,63079,63082,63088,63094,65443"}, Description="SNC - GENe"),
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="OASyS DNA", VendorName="Telvent", TcpPorts={5050, 5051, 5052, 5065, 12135, 12137, 56001, 56099}, UdpPorts={}, Dorks={"port:5050,5051,5052,5065,12135,12137,56001,56099"}, Description="Telvent - OASyS DNA"),
-    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={3671}, UdpPorts={3671}, Dorks={"KNXnet/IP"}, Description="KNXnet/IP is the protocol used to extend the KNX bus across an IP network"),
+    ICS(DeviceType="PLC", DeviceName="KNXnet/IP", VendorName="", TcpPorts={3671}, UdpPorts={3671}, Dorks={"KNXnet/IP"}, Description="KNXnet/IP is the protocol used to extend the KNX bus across an IP network"),
 
     # # #
     # # # Protocols
@@ -177,7 +178,7 @@ def GetAllIcsPortsList():
     return result
 
 
-def PortToVendorDescription(protocol, port):
+def PortToVendorDescription(protocol, port) -> Union[str, None]:
     global ICS_List
     for ics in ICS_List:
         if protocol is 'tcp':
@@ -187,6 +188,25 @@ def PortToVendorDescription(protocol, port):
             if int(port) in ics.UdpPorts:
                 return ics.Description
     return None
+
+
+def PortToVendorId(protocol, port) -> Union[int, None]:
+    global ICS_List
+    for index, vendor in enumerate(ICS_List):
+        if protocol is 'tcp':
+            if int(port) in vendor.TcpPorts:
+                return index
+        else:
+            if int(port) in vendor.UdpPorts:
+                return index
+    return None
+
+
+def GetVendorById(vendor_id) -> Union[ICS, None]:
+    global ICS_List
+    if vendor_id > len(ICS_List):
+        return None
+    return ICS_List[vendor_id]
 
 
 def PrintIcsList(ICS_List=None):

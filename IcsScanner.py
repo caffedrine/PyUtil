@@ -61,6 +61,12 @@ class IcsScanner:
         return ports
 
     def Ping(self, MesureAgain=False):
+        # This requires root
+        if not os.geteuid() == 0:
+            self.__Ping['response'] = False
+            self.__Ping['latency'] = '[ERROR] Run script as root to be able to ping destination'
+            return self.__Ping
+
         # Do not measure ping again if not specifically requested
         if MesureAgain is False:
             if self.__PingMeasured:

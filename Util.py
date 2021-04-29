@@ -141,3 +141,52 @@ def dbg(dbg_str, alert=0):
 
 def dbgln(dbg_str, alert=0):
     dbg(dbg_str + "\n", alert)
+
+
+def dbg_timestamp(dbg_str, alert=0, timestamp = 0):
+    st = Timestamp()
+    # Print time stamp only if string does not start with '[' or str is capital
+    if timestamp:
+        sys.stdout.write("[" + st + "] ")
+
+    if alert == 1:
+        sys.stdout.write("\033[1;31m")  # Set text to red
+        sys.stdout.write(dbg_str)
+        sys.stdout.write("\033[0;0m")   # Reset text
+    else:
+        sys.stdout.write(dbg_str)
+    sys.stdout.flush()
+
+
+def RemoveHtmlTags(text):
+    """Remove html tags from a string"""
+    import re
+    clean = re.compile('<.*?>')
+    return re.sub(clean, '', text)
+
+
+def DownloadWebPage(page_url):
+    import requests
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
+    response = requests.get(page_url, headers=headers)
+    return str(response.content)
+
+
+def GetIpOrganization(addr):
+    res = DownloadWebPage('https://ipinfo.io/' + addr)
+
+    # parse html result ()
+    if "<dt class=\"col-sm-4 mb-md-3\">Organization</dt>" not in res:
+        return "unknown"
+    res = str(res).split("<dt class=\"col-sm-4 mb-md-3\">Organization</dt>")[1]
+    res = res.replace("<dd class=\"col-sm-8 mb-md-9\">", "")
+    res = res.split("</dd>")[0]
+    res = RemoveHtmlTags(res)
+    res = res.replace("\\n", "")
+    res = res.replace("\t", "")
+    while "  " in res:
+        res = res.replace("  ", " ")
+    res = res.strip()
+    return res
+
