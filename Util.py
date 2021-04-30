@@ -4,6 +4,7 @@
 #   Author      : Alex C.
 #   Description : Util functions
 #
+import json
 import re
 import sys
 import time
@@ -165,48 +166,30 @@ def RemoveHtmlTags(text):
     return re.sub(clean, '', text)
 
 
-def DownloadWebPage(page_url):
+def DownloadWebPage(page_url, timeout=10):
     import requests
     import html
 
-    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-
-    response = requests.get(page_url, headers=headers)
-    return html.unescape(str(response.content))
+    try:
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+        response = requests.get(page_url, headers=headers, timeout=timeout)
+        return response.text
+    except:
+        return "error_exception"
 
 
 def GetIpInfo(addr):
-    html = DownloadWebPage('https://ipinfo.io/' + addr)
+    html = DownloadWebPage("https://rest.db.ripe.net/search.json?query-string=%s&flags=no-referenced&flags=no-irt&source=RIPE" % str(addr))
 
     result = {}
     result['org'] = "unknown"
     result['asn'] = "unknown"
 
-    # Get organization
-    if "<dt class=\"col-sm-4 mb-md-3\">Organization</dt>" in html:
-        res = str(html).split("<dt class=\"col-sm-4 mb-md-3\">Organization</dt>")[1]
-        res = res.replace("<dd class=\"col-sm-8 mb-md-9\">", "")
-        res = res.split("</dd>")[0]
-        res = RemoveHtmlTags(res)
-        res = res.replace("\\n", "")
-        res = res.replace("\t", "")
-        while "  " in res:
-            res = res.replace("  ", " ")
-        res = res.strip()
-        result['org'] = res
+    jsn = json.loads(html)
 
-    # Get ASN
-    if "<dt class=\"col-sm-4 mb-md-3\">ASN</dt>" in html:
-        res = str(html).split("<dt class=\"col-sm-4 mb-md-3\">ASN</dt>")[1]
-        res = res.replace("<dd class=\"col-sm-8 mb-md-9\">", "")
-        res = res.split("</dd>")[0]
-        res = RemoveHtmlTags(res)
-        res = res.replace("\\n", "")
-        res = res.replace("\t", "")
-        while "  " in res:
-            res = res.replace("  ", " ")
-        res = res.strip()
-        result['asn'] = res
-
+    if jsn['objects']['object'][0]['attributes']['attribute'][2]['value']:
+        result['org'] = jsn['objects']['object'][0]['attributes']['attribute'][2]['value']
+    if jsn['objects']['object'][1]['attributes']['attribute'][2]['value']:
+        result['asn'] = jsn['objects']['object'][1]['attributes']['attribute'][2]['value']
     return result
 

@@ -56,7 +56,7 @@ class IcsScanner:
         self.__nm.scan(str(self.__IP_Addr), 'U:' + str(ports_str))
         ports = []
         for port in ports:
-            if (self.__nm.has_host(self.__IP_Addr)) and ("tcp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['tcp']) and (self.__nm[self.__IP_Addr]['tcp'][port]['state'] == "open"):
+            if (self.__nm.has_host(self.__IP_Addr)) and ("udp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['udp']) and (self.__nm[self.__IP_Addr]['udp'][port]['state'] == "open"):
                 ports.append(port)
         return ports
 
