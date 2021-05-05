@@ -28,8 +28,8 @@ ICS_List_Shodan = [
 ]
 
 ICS_List_Essentials = [
-    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={502}, UdpPorts={502}, Dorks={"port:502"}, Description="Modbus over TCP IP on port 502"),
-    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={102}, UdpPorts={102}, Dorks={"port:102"}, Description="S7 (S7 Communication)"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={502}, UdpPorts={}, Dorks={"port:502"}, Description="Modbus over TCP IP on port 502"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={102}, UdpPorts={}, Dorks={"port:102"}, Description="S7 (S7 Communication)"),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={20000}, UdpPorts={20000}, Dorks={"port:20000 source address"}, Description="DNP3 (Distributed Network Protocol)"),
     ICS(DeviceType="PLC", DeviceName="Niagara", VendorName="Tridium", TcpPorts={1911,4911}, UdpPorts={1911,4911}, Dorks={"port:1911,4911 product:Niagara"}, Description="The Fox protocol, developed as part of the Niagara framework from Tridium"),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={47808}, UdpPorts={47808}, Dorks={"port:47808"}, Description="BACnet is a communications protocol for building automation and control networks."),
@@ -74,7 +74,7 @@ ICS_List = [
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="PI Server", VendorName="OSIsoft", TcpPorts={5450}, UdpPorts={}, Dorks={"port:5450"}, Description="PI Server"),
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="Spectrum Power TG", VendorName="Siemens", TcpPorts={50001, 50018, 50020, 50021, 50025, 50028, 50110, 50111}, UdpPorts={}, Dorks={"port:500001,50018,50020,50021,50025,50028,50110,50111"}, Description="Spectrum Power TG"),
     ICS(DeviceType="Vendor Specific Protocol", DeviceName="GENe", VendorName="SNC", TcpPorts={38000, 38001, 38011, 38012, 38014, 38015, 38200, 38210, 38301, 38400, 38700, 62900, 62911, 62924, 62930, 62938, 62956, 62957, 62963, 62981, 62982, 62985, 62992, 63012, 63027, 63036, 63041, 63075, 63079, 63082, 63088, 63094, 65443}, UdpPorts={}, Dorks={"port:38000,38001,38011,38012,38014,38015,38200,38210,38301,38400,38700,62900,62911,62924,62930,62938,62956,62957,62963,62981,62982,62985,62992,63012,63027,63036,63041,63075,63079,63082,63088,63094,65443"}, Description="SNC - GENe"),
-    ICS(DeviceType="Vendor Specific Protocol", DeviceName="OASyS DNA", VendorName="Telvent", TcpPorts={5050, 5051, 5052, 5065, 12135, 12137, 56001, 56099}, UdpPorts={}, Dorks={"port:5050,5051,5052,5065,12135,12137,56001,56099"}, Description="Telvent - OASyS DNA"),
+    ICS(DeviceType="Vendor Specific Protocol", DeviceName="OASyS DNA", VendorName="Telvent", TcpPorts={5051, 5052, 5065, 12135, 12137, 56001, 56099}, UdpPorts={}, Dorks={"port:5050,5051,5052,5065,12135,12137,56001,56099"}, Description="Telvent - OASyS DNA"),
     ICS(DeviceType="PLC", DeviceName="KNXnet/IP", VendorName="", TcpPorts={3671}, UdpPorts={3671}, Dorks={"KNXnet/IP"}, Description="KNXnet/IP is the protocol used to extend the KNX bus across an IP network"),
 
     # # #

@@ -83,8 +83,8 @@ class ScanEngine:
             dbgln("Hostname: %s" % str(scan_result.Hostname))
 
         ip_info = GetIpInfo(ip_addr)
-        scan_result.Organization = ip_info['org']
-        scan_result.ASN = ip_info['asn']
+        scan_result.Organization = ip_info['org'].replace(";", "")
+        scan_result.ASN = ip_info['asn'].replace(";", "")
         if print_info:
             dbgln("ISP: %s" % scan_result.Organization)
             dbgln("ASN: %s" % scan_result.ASN)

@@ -33,6 +33,8 @@ class IcsScanner:
                 self.__IP_Addr = ip
             else:
                 raise ValueError("Invalid ip or host provided: '%s'" % IpOrHostname)
+        self.__AdditionalNmapArguments = "-Pn" # treat host as it is online
+        #self.__AdditionalNmapArguments += " -sV" # Request service banner (better results accuracy)
 
     def GetHostname(self):
         return self.__Hostname
@@ -43,7 +45,7 @@ class IcsScanner:
     def GetOpenTcpPorts(self) -> list:
         ports = GetAllIcsPortsList()['tcp']
         ports_str = (','.join([str(i) for i in ports]))
-        self.__nm.scan(str(self.__IP_Addr), 'T:' + str(ports_str), arguments="")
+        self.__nm.scan(str(self.__IP_Addr), 'T:' + str(ports_str), arguments=self.__AdditionalNmapArguments)
         open_ports = []
         for port in ports:
             if (self.__nm.has_host(self.__IP_Addr)) and ("tcp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['tcp']) and (self.__nm[self.__IP_Addr]['tcp'][port]['state'] == "open"):
@@ -53,7 +55,7 @@ class IcsScanner:
     def GetOpenUdpPorts(self):
         ports = GetAllIcsPortsList()['udp']
         ports_str = (','.join([str(i) for i in ports]))
-        self.__nm.scan(str(self.__IP_Addr), 'U:' + str(ports_str))
+        self.__nm.scan(str(self.__IP_Addr), 'U:' + str(ports_str), arguments=self.__AdditionalNmapArguments)
         ports = []
         for port in ports:
             if (self.__nm.has_host(self.__IP_Addr)) and ("udp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['udp']) and (self.__nm[self.__IP_Addr]['udp'][port]['state'] == "open"):

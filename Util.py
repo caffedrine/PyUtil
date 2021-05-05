@@ -179,17 +179,102 @@ def DownloadWebPage(page_url, timeout=10):
 
 
 def GetIpInfo(addr):
-    html = DownloadWebPage("https://rest.db.ripe.net/search.json?query-string=%s&flags=no-referenced&flags=no-irt&source=RIPE" % str(addr))
+    ip_info_link = "https://rest.db.ripe.net/search.json?query-string=%s&flags=no-referenced&flags=no-irt&source=RIPE" % str(addr)
+    html = DownloadWebPage(ip_info_link)
 
     result = {}
     result['org'] = "unknown"
+    result['org_key'] = "unknown"
+    result['role_key'] = "unknown"
     result['asn'] = "unknown"
+    result['country'] = "unknown"
+    result['ripe_link'] = ip_info_link
+    #result['full_json_info'] = html
 
+    # Parse ASN
+    jsn = json.loads(html)
+    if 'objects' not in jsn:
+        return ""
+
+    base_objects = jsn['objects']['object']
+    for obj in base_objects:
+        attributes = obj['attributes']['attribute']
+        # Loop through each attribute until all fields are found
+        for atr in attributes:
+            atr_name = str(atr['name'])
+            atr_val = str(atr['value'])
+            # Check if current attribute is the one we are looking for
+            if (atr_name == "descr"):
+                if result['org'] == "unknown":
+                    result['org'] = atr_val
+                # else:
+                #     result['org'] += ", " + atr_val
+            if (atr_name == "origin") and (result['asn'] == "unknown"):
+                result['asn'] = atr_val
+            if (atr_name == "country") and (result['country'] == "unknown"):
+                result['country'] = atr_val
+
+            # Read organization role key
+            if (('referenced-type' in atr) and (atr['referenced-type'] == "organisation")) and (result['org_key'] == "unknown"):
+                result['org_key'] = atr_val
+
+            if ('link' in atr)  and ('type' in atr['link']) and (atr['link']['type'] == "locator") and (result['role_key'] == "unknown"):
+                result['role_key'] = atr_val
+
+    # Read original organization name directly if key already read
+    if result['org_key'] != "unknown":
+        org_res = GetRipeIpOrganizationName(result['org_key'])
+        if org_res:
+            result['org'] = org_res
+    elif result['role_key'] != "unknown":
+        res = GetRipeOrganizationId(result['role_key'])
+        if res:
+            result['org_key'] = res
+            org_res = GetRipeIpOrganizationName(result['org_key'])
+            if org_res:
+                result['org'] = org_res
+
+    return result
+
+
+def GetRipeOrganizationId(ripe_role_key):
+    request_link = "https://rest.db.ripe.net/ripe/role/%s.json" % ripe_role_key
+    html = DownloadWebPage(request_link)
+
+    # Parse response
     jsn = json.loads(html)
 
-    if jsn['objects']['object'][0]['attributes']['attribute'][2]['value']:
-        result['org'] = jsn['objects']['object'][0]['attributes']['attribute'][2]['value']
-    if jsn['objects']['object'][1]['attributes']['attribute'][2]['value']:
-        result['asn'] = jsn['objects']['object'][1]['attributes']['attribute'][2]['value']
-    return result
+    if 'objects' not in jsn:
+        return ""
+
+    base_objects = jsn['objects']['object']
+    for obj in base_objects:
+        attributes = obj['attributes']['attribute']
+        # Loop through each attribute until all fields are found
+        for atr in attributes:
+            atr_name = str(atr['name'])
+            atr_val = str(atr['value'])
+            if ('referenced-type' in atr) and (atr['referenced-type'] == "organisation") or ("admin-c" in atr_name):
+                return atr_val
+
+
+def GetRipeIpOrganizationName(ripe_org_key):
+    request_link = "https://rest.db.ripe.net/ripe/organisation/%s.json" % ripe_org_key
+    html = DownloadWebPage(request_link)
+
+    # Parse response
+    jsn = json.loads(html)
+
+    if 'objects' not in jsn:
+        return ""
+
+    base_objects = jsn['objects']['object']
+    for obj in base_objects:
+        attributes = obj['attributes']['attribute']
+        # Loop through each attribute until all fields are found
+        for atr in attributes:
+            atr_name = str(atr['name'])
+            atr_val = str(atr['value'])
+            if atr_name == "org-name":
+                return atr_val
 
