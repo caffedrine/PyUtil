@@ -97,7 +97,8 @@ class ScanEngine:
             scan_result.OpenUdpPorts = ics.GetOpenUdpPorts()
             scan_result.OpenTcpPorts = ics.GetOpenTcpPorts()
             if print_info:
-                dbgln("Ports open: %s" % (','.join([str(x) for x in scan_result.OpenTcpPorts]) if len(scan_result.OpenTcpPorts) else "none"))
+                dbgln("Ports open: tcp:%s, udp:%s" % ((','.join([str(x) for x in scan_result.OpenTcpPorts]) if len(scan_result.OpenTcpPorts) else "none"),
+                      (','.join([str(x) for x in scan_result.OpenUdpPorts]) if len(scan_result.OpenUdpPorts) else "none")))
 
             scan_result.IcsDetected = True if (len(scan_result.OpenTcpPorts) > 0) else False
             if print_info:
@@ -114,7 +115,7 @@ class ScanEngine:
                     if tmp is not None:
                         scan_result.VendorsListIds.append(tmp)
                 # Read all possible vendors by discovered open UDP ports
-                for port in scan_result.OpenTcpPorts:
+                for port in scan_result.OpenUdpPorts:
                     tmp = PortToVendorId('udp', int(port))
                     if tmp is not None:
                         scan_result.VendorsListIds.append(tmp)

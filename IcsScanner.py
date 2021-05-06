@@ -56,11 +56,11 @@ class IcsScanner:
         ports = GetAllIcsPortsList()['udp']
         ports_str = (','.join([str(i) for i in ports]))
         self.__nm.scan(str(self.__IP_Addr), 'U:' + str(ports_str), arguments=self.__AdditionalNmapArguments)
-        ports = []
+        open_ports = []
         for port in ports:
             if (self.__nm.has_host(self.__IP_Addr)) and ("udp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['udp']) and (self.__nm[self.__IP_Addr]['udp'][port]['state'] == "open"):
-                ports.append(port)
-        return ports
+                open_ports.append(port)
+        return open_ports
 
     def Ping(self, MesureAgain=False):
         # This requires root
