@@ -104,7 +104,7 @@ class ScanEngine:
             if print_info:
                 dbgln("ICS detected: %s" % str(scan_result.IcsDetected))
 
-            if scan_result.OpenTcpPorts:
+            if scan_result.OpenTcpPorts or scan_result.OpenUdpPorts:
                 if print_info:
                     dbgln("Potential vendors:")
 

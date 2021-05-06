@@ -32,7 +32,7 @@ ICS_List_Essentials = [
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={102}, UdpPorts={}, Dorks={"port:102"}, Description="S7 (S7 Communication)"),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={20000}, UdpPorts={20000}, Dorks={"port:20000 source address"}, Description="DNP3 (Distributed Network Protocol)"),
     ICS(DeviceType="PLC", DeviceName="Niagara", VendorName="Tridium", TcpPorts={1911,4911}, UdpPorts={1911,4911}, Dorks={"port:1911,4911 product:Niagara"}, Description="The Fox protocol, developed as part of the Niagara framework from Tridium"),
-    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={47808}, UdpPorts={47808}, Dorks={"port:47808"}, Description="BACnet is a communications protocol for building automation and control networks."),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={}, UdpPorts={47808}, Dorks={"port:47808"}, Description="BACnet is a communications protocol for building automation and control networks."),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={44818}, UdpPorts={44818}, Dorks={"port:44818"}, Description="EtherNet/IP was introduced in 2001 and is an industrial Ethernet network solution available for manufacturing automation."),
     ICS(DeviceType="PLC", DeviceName="", VendorName="General Electric ", TcpPorts={8245,18246}, UdpPorts={8245,18246}, Dorks={"port:18245,18246 product:\"general electric\""}, Description="Service Request Transport Protocol (GE-SRTP) "),
     ICS(DeviceType="PLC", DeviceName="", VendorName="Fieldbus", TcpPorts={5094}, UdpPorts={5094}, Dorks={"port:5094 hart-ip"}, Description="The HART Communications Protocol (Highway Addressable Remote Transducer Protocol)"),
