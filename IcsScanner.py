@@ -59,7 +59,7 @@ class IcsScanner:
         open_ports = []
         for port in ports:
             if (self.__nm.has_host(self.__IP_Addr)) and ("udp" in self.__nm[self.__IP_Addr]) and (port in self.__nm[self.__IP_Addr]['udp']) and \
-                    ((self.__nm[self.__IP_Addr]['udp'][port]['state'] == "open") or (self.__nm[self.__IP_Addr]['udp'][port]['state'] == "open|filtered")):
+                    ((self.__nm[self.__IP_Addr]['udp'][port]['state'] == "open")): # or (self.__nm[self.__IP_Addr]['udp'][port]['state'] == "open|filtered")):
                 open_ports.append(port)
         return open_ports
 
