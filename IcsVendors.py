@@ -27,6 +27,10 @@ ICS_List_Shodan = [
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={502}, UdpPorts={502}, Dorks={"ics"}, Description="Modbus get all ICS devices"),
 ]
 
+ICS_List_Test = [
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"Schneider"}, Description="Schneider Electric - ICS systems"),
+]
+
 ICS_List_Essentials = [
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={502}, UdpPorts={}, Dorks={"port:502"}, Description="Modbus over TCP IP on port 502"),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={102}, UdpPorts={}, Dorks={"port:102"}, Description="S7 (S7 Communication)"),
@@ -43,6 +47,67 @@ ICS_List_Essentials = [
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={2404}, UdpPorts={2404}, Dorks={"port:2404 asdu address"}, Description="IEC 60870 part 5 is one of the IEC 60870 set of standards which define systems used for SCADA in electrical engineering and power system automation applications."),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={20547}, UdpPorts={20547}, Dorks={"port:20547 PLC"}, Description="ProConOS is a high performance PLC run time engine designed for both embedded and PC based control applications."),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={3671}, UdpPorts={3671}, Dorks={"KNXnet/IP"}, Description="KNXnet/IP is the protocol used to extend the KNX bus across an IP network"),
+
+]
+
+ICS_LIST_HeaderFingerprint = [
+    # # #
+    # # # ICS by Header's fingerprint
+    # # #
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"scada"}, Description=""),
+    ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"Logic controller"'}, Description=""),
+    ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'PLC'}, Description=""),
+    ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"wind farm"'}, Description=""),
+    ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"modbus"'}, Description=""),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Siemens", TcpPorts={}, UdpPorts={}, Dorks={"Siemens"}, Description="Siemens - Siemens"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="FATEK", TcpPorts={}, UdpPorts={}, Dorks={"fatek"}, Description="FATEK PLCs"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Adcon", TcpPorts={}, UdpPorts={}, Dorks={"adcon"}, Description="Adcon PLCs"),
+    # ICS(DeviceType="ICS", DeviceName="Generic", VendorName="ABB", TcpPorts={}, UdpPorts={}, Dorks={"abb"}, Description="ABB PLCs"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="ACKP", TcpPorts={}, UdpPorts={}, Dorks={"AKCP"}, Description="ACKP - AKCP Embedded Web Server"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Allen-Bradley", TcpPorts={}, UdpPorts={}, Dorks={"Bradley"}, Description="Rockwell Automation/Allen-Bradley ICSs"),
+    # ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Rockwell Automation", TcpPorts={}, UdpPorts={}, Dorks={"Rockwell Automation"}, Description="Rockwell Automation - Rockwell Automation"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"Schneider"}, Description="Schneider Electric - ICS systems"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"Modicon"}, Description="Schneider Electric - Modicon"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"ClearSCADA"}, Description="Schneider Electric - ClearSCADA"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={'"Power Measurement"'}, Description="Schneider Electric - Power Measurement"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"PowerLogic"}, Description="Schneider Electric - PowerLogic"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"XENTA"}, Description="Schneider Electric - Tac XENTA"),
+    ICS(DeviceType="ICS", DeviceName="Modicon", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"TELEMECANIQUE"}, Description="Schneider Electric - TELEMECANIQUE"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="BroadWeb", TcpPorts={}, UdpPorts={}, Dorks={"BroadWeb"}, Description="BroadWeb - BroadWeb"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="General Electric", TcpPorts={}, UdpPorts={}, Dorks={'"general electric"'}, Description="General Electric Devices"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Cimetrics", TcpPorts={}, UdpPorts={}, Dorks={"cinemetrics"}, Description="Cimetrics - Cimetrics Web Server"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Delta Controls", TcpPorts={}, UdpPorts={}, Dorks={"enteliTOUCH"}, Description="Delta Controls - DELTA enteliTOUCH"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Electro Industries GaugeTech", TcpPorts={}, UdpPorts={}, Dorks={'"EIG Embedded"'}, Description="Electro Industries GaugeTech - EIG Embedded Web Server"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Elster EnergyICT", TcpPorts={}, UdpPorts={}, Dorks={"EnergyICT"}, Description="Elster EnergyICT - EnergyICT"),
+    ICS(DeviceType="ICS", DeviceName="EtherNet/IP /Modbus-TCP Interface", VendorName="HMS", TcpPorts={}, UdpPorts={}, Dorks={"HMS AnyBus"}, Description="HMS - HMS AnyBus WebServer"),
+    ICS(DeviceType="ICS", DeviceName="IPC@CHIP", VendorName="Beck IPC", TcpPorts={}, UdpPorts={}, Dorks={'"Beck IPC"'}, Description="Beck IPC - IPC@CHIP"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Moxa", TcpPorts={}, UdpPorts={}, Dorks={"MoxaHttp"}, Description="Moxa - MoxaHttp"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Tridium", TcpPorts={}, UdpPorts={}, Dorks={"Tridium"}, Description="Tridium - Niagara Web Server"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Novatech", TcpPorts={}, UdpPorts={}, Dorks={'"NovaTech HTTPD"'}, Description="Novatech - NovaTech HTTPD"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"Powerlink"}, Description="Generic - Powerlink"),
+    ICS(DeviceType="ICS", DeviceName="Reliance", VendorName="Reliance", TcpPorts={}, UdpPorts={}, Dorks={"Reliance"}, Description="Reliance - Reliance 4 Control Server"),
+    ICS(DeviceType="ICS", DeviceName="NetWeaver Application Server", VendorName="SAP", TcpPorts={}, UdpPorts={}, Dorks={"NetWeaver"}, Description="SAP - SAP NetWeaver Application Server"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"SLC5"}, Description="Generic - SLC5"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="SoftPLC", TcpPorts={}, UdpPorts={}, Dorks={"SoftPLC"}, Description="SoftPLC - SoftPLC"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="SpiderControl", TcpPorts={}, UdpPorts={}, Dorks={"SpiderControl"}, Description="SpiderControl - SpiderControl"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Stulz", TcpPorts={}, UdpPorts={}, Dorks={"Stulz"}, Description="Stulz - Stulz GmbH Klimatechnik"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Wind River", TcpPorts={}, UdpPorts={}, Dorks={"VxWorks"}, Description="Wind River - VxWorks"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Wago", TcpPorts={}, UdpPorts={}, Dorks={"WAGO"}, Description="Wago - WAGO"),
+    ICS(DeviceType="ICS", DeviceName="WebVisu", VendorName="Codesys", TcpPorts={}, UdpPorts={}, Dorks={"Webvisu"}, Description="Codesys - Webvisu"),
+    ICS(DeviceType="ICS", DeviceName="WindCube", VendorName="NRG Systems", TcpPorts={}, UdpPorts={}, Dorks={"WindWeb"}, Description="NRG Systems - WindWeb"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Rabbit", TcpPorts={}, UdpPorts={}, Dorks={'"Z-World Rabbit"'}, Description="Rabbit - Z-World Rabbit"),
+    ICS(DeviceType="ICS", DeviceName="eiPortal", VendorName="Elster EnergyICT", TcpPorts={}, UdpPorts={}, Dorks={"eiPortal"}, Description="Elster EnergyICT - eiPortal"),
+    ICS(DeviceType="ICS", DeviceName="i.LON 600", VendorName="Echelon", TcpPorts={}, UdpPorts={}, Dorks={''"i.LON"''}, Description="Echelon - i.LON"),
+    ICS(DeviceType="ICS", DeviceName="ioLogik", VendorName="Moxa", TcpPorts={}, UdpPorts={}, Dorks={"ioLogik"}, Description="Moxa - ioLogik Web Server"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"CherryPy"}, Description="Generic - openerp server:CherryPy"),
+    ICS(DeviceType="ICS", DeviceName="IQ3xcite", VendorName="Trend", TcpPorts={}, UdpPorts={}, Dorks={"iq3"}, Description="Trend - server:iq3"),
+    ICS(DeviceType="IvCS", DeviceName="ServerView", VendorName="Fujitsu", TcpPorts={}, UdpPorts={}, Dorks={"serverview"}, Description="Fujitsu - serverview"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Somfy", TcpPorts={}, UdpPorts={}, Dorks={"Somfy"}, Description="Somfy - title:Somfy"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Adcon Telemetry", TcpPorts={}, UdpPorts={}, Dorks={"adcon"}, Description="Adcon Telemetry - title:adcon"),
+    ICS(DeviceType="ICS", DeviceName="Electrical car charger", VendorName="DIRIS DIGIWARE", TcpPorts={1081, 1082}, UdpPorts={}, Dorks={"Server: servX"}, Description="DIRIS DIGIWARE: Energy measurement and monitoring system"),
+
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"Jetty 3.1.8 (Windows 2000 5.0 x86)"'}, Description="Generic - Jetty 3.1.8 (Windows 2000 5.0 x86)"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"NET ARM Web Server/1.00"'}, Description="Generic - NET ARM Web Server/1.00"),
 
 ]
 
@@ -96,65 +161,6 @@ ICS_List = [
     ICS(DeviceType="Protocol", DeviceName="Unknown", VendorName="Mitsubitshi", TcpPorts={5006}, UdpPorts={5007}, Dorks={"port:5006,5007"}, Description="MELSEC-Q (Mitsubishi electric)"),
     ICS(DeviceType="Protocol", DeviceName="Tridium Fox", VendorName="", TcpPorts={1911, 4911}, UdpPorts={}, Dorks={"port:1911,4911"}, Description="Tridium Fox Protocol by Niagara AX"),
     ICS(DeviceType="Protocol", DeviceName="PCWORX", VendorName="Phoenix Contact", TcpPorts={1962}, UdpPorts={}, Dorks={"port:1962"}, Description="PCWorx by Phoenix Contact"),
-
-    # # #
-    # # # ICS by Header's fingerprint
-    # # #
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"scada"}, Description=""),
-    ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"Logic controller"'}, Description=""),
-    ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'PLC'}, Description=""),
-    ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"wind farm"'}, Description=""),
-    ICS(DeviceType="PLC", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"modbus"'}, Description=""),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Siemens", TcpPorts={}, UdpPorts={}, Dorks={"Siemens"}, Description="Siemens - Siemens"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="FATEK", TcpPorts={}, UdpPorts={}, Dorks={"fatek"}, Description="FATEK PLCs"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Adcon", TcpPorts={}, UdpPorts={}, Dorks={"adcon"}, Description="Adcon PLCs"),
-    # ICS(DeviceType="ICS", DeviceName="Generic", VendorName="ABB", TcpPorts={}, UdpPorts={}, Dorks={"abb"}, Description="ABB PLCs"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="ACKP", TcpPorts={}, UdpPorts={}, Dorks={"AKCP"}, Description="ACKP - AKCP Embedded Web Server"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Allen-Bradley", TcpPorts={}, UdpPorts={}, Dorks={"Bradley"}, Description="Rockwell Automation/Allen-Bradley ICSs"),
-    # ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Rockwell Automation", TcpPorts={}, UdpPorts={}, Dorks={"Rockwell Automation"}, Description="Rockwell Automation - Rockwell Automation"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"Schneider"}, Description="Schneider Electric - ICS systems"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"Modicon"}, Description="Schneider Electric - Modicon"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"ClearSCADA"}, Description="Schneider Electric - ClearSCADA"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={'"Power Measurement"'}, Description="Schneider Electric - Power Measurement"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"PowerLogic"}, Description="Schneider Electric - PowerLogic"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"XENTA"}, Description="Schneider Electric - Tac XENTA"),
-    ICS(DeviceType="ICS", DeviceName="Modicon", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"TELEMECANIQUE"}, Description="Schneider Electric - TELEMECANIQUE"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="BroadWeb", TcpPorts={}, UdpPorts={}, Dorks={"BroadWeb"}, Description="BroadWeb - BroadWeb"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="General Electric", TcpPorts={}, UdpPorts={}, Dorks={'"general electric"'}, Description="General Electric Devices"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Cimetrics", TcpPorts={}, UdpPorts={}, Dorks={"cinemetrics"}, Description="Cimetrics - Cimetrics Web Server"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Delta Controls", TcpPorts={}, UdpPorts={}, Dorks={"enteliTOUCH"}, Description="Delta Controls - DELTA enteliTOUCH"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Electro Industries GaugeTech", TcpPorts={}, UdpPorts={}, Dorks={'"EIG Embedded"'}, Description="Electro Industries GaugeTech - EIG Embedded Web Server"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Elster EnergyICT", TcpPorts={}, UdpPorts={}, Dorks={"EnergyICT"}, Description="Elster EnergyICT - EnergyICT"),
-    ICS(DeviceType="ICS", DeviceName="EtherNet/IP /Modbus-TCP Interface", VendorName="HMS", TcpPorts={}, UdpPorts={}, Dorks={"HMS AnyBus"}, Description="HMS - HMS AnyBus WebServer"),
-    ICS(DeviceType="ICS", DeviceName="IPC@CHIP", VendorName="Beck IPC", TcpPorts={}, UdpPorts={}, Dorks={'"Beck IPC"'}, Description="Beck IPC - IPC@CHIP"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Moxa", TcpPorts={}, UdpPorts={}, Dorks={"MoxaHttp"}, Description="Moxa - MoxaHttp"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Tridium", TcpPorts={}, UdpPorts={}, Dorks={"Tridium"}, Description="Tridium - Niagara Web Server"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Novatech", TcpPorts={}, UdpPorts={}, Dorks={'"NovaTech HTTPD"'}, Description="Novatech - NovaTech HTTPD"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"Powerlink"}, Description="Generic - Powerlink"),
-    ICS(DeviceType="ICS", DeviceName="Reliance", VendorName="Reliance", TcpPorts={}, UdpPorts={}, Dorks={"Reliance"}, Description="Reliance - Reliance 4 Control Server"),
-    ICS(DeviceType="ICS", DeviceName="NetWeaver Application Server", VendorName="SAP", TcpPorts={}, UdpPorts={}, Dorks={"NetWeaver"}, Description="SAP - SAP NetWeaver Application Server"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"SLC5"}, Description="Generic - SLC5"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="SoftPLC", TcpPorts={}, UdpPorts={}, Dorks={"SoftPLC"}, Description="SoftPLC - SoftPLC"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="SpiderControl", TcpPorts={}, UdpPorts={}, Dorks={"SpiderControl"}, Description="SpiderControl - SpiderControl"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Stulz", TcpPorts={}, UdpPorts={}, Dorks={"Stulz"}, Description="Stulz - Stulz GmbH Klimatechnik"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Wind River", TcpPorts={}, UdpPorts={}, Dorks={"VxWorks"}, Description="Wind River - VxWorks"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Wago", TcpPorts={}, UdpPorts={}, Dorks={"WAGO"}, Description="Wago - WAGO"),
-    ICS(DeviceType="ICS", DeviceName="WebVisu", VendorName="Codesys", TcpPorts={}, UdpPorts={}, Dorks={"Webvisu"}, Description="Codesys - Webvisu"),
-    ICS(DeviceType="ICS", DeviceName="WindCube", VendorName="NRG Systems", TcpPorts={}, UdpPorts={}, Dorks={"WindWeb"}, Description="NRG Systems - WindWeb"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Rabbit", TcpPorts={}, UdpPorts={}, Dorks={'"Z-World Rabbit"'}, Description="Rabbit - Z-World Rabbit"),
-    ICS(DeviceType="ICS", DeviceName="eiPortal", VendorName="Elster EnergyICT", TcpPorts={}, UdpPorts={}, Dorks={"eiPortal"}, Description="Elster EnergyICT - eiPortal"),
-    ICS(DeviceType="ICS", DeviceName="i.LON 600", VendorName="Echelon", TcpPorts={}, UdpPorts={}, Dorks={''"i.LON"''}, Description="Echelon - i.LON"),
-    ICS(DeviceType="ICS", DeviceName="ioLogik", VendorName="Moxa", TcpPorts={}, UdpPorts={}, Dorks={"ioLogik"}, Description="Moxa - ioLogik Web Server"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={"CherryPy"}, Description="Generic - openerp server:CherryPy"),
-    ICS(DeviceType="ICS", DeviceName="IQ3xcite", VendorName="Trend", TcpPorts={}, UdpPorts={}, Dorks={"iq3"}, Description="Trend - server:iq3"),
-    ICS(DeviceType="IvCS",DeviceName="ServerView", VendorName="Fujitsu", TcpPorts={}, UdpPorts={}, Dorks={"serverview"}, Description="Fujitsu - serverview"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Somfy", TcpPorts={}, UdpPorts={}, Dorks={"Somfy"}, Description="Somfy - title:Somfy"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Adcon Telemetry", TcpPorts={}, UdpPorts={}, Dorks={"adcon"}, Description="Adcon Telemetry - title:adcon"),
-    ICS(DeviceType="ICS", DeviceName="Electrical car charger", VendorName="DIRIS DIGIWARE", TcpPorts={1081, 1082}, UdpPorts={}, Dorks={"Server: servX"}, Description="DIRIS DIGIWARE: Energy measurement and monitoring system"),
-
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"Jetty 3.1.8 (Windows 2000 5.0 x86)"'}, Description="Generic - Jetty 3.1.8 (Windows 2000 5.0 x86)"),
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Generic", TcpPorts={}, UdpPorts={}, Dorks={'"NET ARM Web Server/1.00"'}, Description="Generic - NET ARM Web Server/1.00"),
-
 ]
 
 
@@ -216,4 +222,4 @@ def PrintIcsList(ICS_List=None):
     for tmpIcs in ICS_List:
         ics = tmpIcs
         i += 1
-        print("[%d] - %s"%(i, ics.Description))
+        print("[%d] '%s' - %s" % (i, ' | '.join(str(e) for e in ics.Dorks), ics.Description))

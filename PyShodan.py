@@ -59,10 +59,9 @@ class ShodanResult:
         self.Loc_AreaCode = ""
         self.Loc_Latitude = ""
         self.Loc_Longitude = ""
-        self.Loc_CountryCode3 = ""
+        self.Loc_CountryCode = ""
         self.Loc_CountryName = ""
         self.Loc_PostalCode = ""
-        self.Loc_DmaCode = ""
 
     def GetCsvHeader(self):
         result_attributes = [attr for attr in self.__dict__.keys() if not attr.startswith('__')]
@@ -129,7 +128,7 @@ class ShodanService:
                         match.Timestamp = result['timestamp']
                         match.Isp = result['isp']
                         match.Os = result['os']
-                        match.ASN = result['asn']
+                        match.ASN = result.get('asn') or ""
                         match.IpDecimal = result['ip']
                         match.Org = result['org']
                         match.Port = result['port']
@@ -140,9 +139,8 @@ class ShodanService:
                         match.Loc_CountryName = result['location']['country_name']
                         match.Loc_Longitude = result['location']['longitude']
                         match.Loc_Longitude = result['location']['longitude']
-                        match.Loc_CountryCode3 = result['location']['country_code3']
+                        match.Loc_CountryCode = result['location']['country_code']
                         match.Loc_PostalCode = result['location']['postal_code']
-                        match.Loc_DmaCode = result['location']['dma_code']
                         Ret.append(match)
                     except Exception as e:
                         dbgln("Error: failed to parse results for dork '{}': {}".format(dork, e), alert=1)

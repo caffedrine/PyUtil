@@ -165,9 +165,13 @@ class ScanEngine:
 
     def Ics_ScanMultipleIPs(self, input_file):
         # Write CSV header
-        self.__export_filename = "{}_results.csv".format(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H-%M-%S')))
+        input_path = os.path.dirname(input_file)
+        input_filename = os.path.basename(input_file)
+
+        self.__export_filename = input_path + "/" + input_filename + "_results_from_{}.csv".format(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H-%M-%S')))
         csv_data = "Index;Time;IP;Hostname;Organization;ASN;Ping;Scan status;ICS Detected;ICS TCP ports open;ICS UDP Ports open;ICS Vendors;Raw scan\n"
         FileWrite(self.__export_filename, csv_data)
+        dbgln("writing results to " + self.__export_filename)
         dbgln(csv_data)
 
         # ICS Scanner
