@@ -65,7 +65,7 @@ class IcsScanner:
 
     def Ping(self, MesureAgain=False):
         # This requires root
-        if not os.geteuid() == 0:
+        if (os.name != 'nt') and (not os.geteuid() == 0):
             self.__Ping['response'] = False
             self.__Ping['latency'] = '[ERROR] Run script as root to be able to ping destination'
             return self.__Ping
