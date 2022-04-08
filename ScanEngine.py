@@ -21,7 +21,7 @@ class IcsScanResult:
 
 
 class ScanEngine:
-    def __init__(self, threads_no=10):
+    def __init__(self, threads_no=50):
         self.__pool = ThreadPool(threads_no)
         self.__export_filename = ""
         self.__ip_addresses_list = {}
@@ -165,7 +165,7 @@ class ScanEngine:
 
     def Ics_ScanMultipleIPs(self, input_file):
         # Write CSV header
-        input_path = os.path.dirname(input_file)
+        input_path = os.path.dirname(os.path.abspath(input_file))
         input_filename = os.path.basename(input_file)
 
         self.__export_filename = input_path + "/" + input_filename + "_results_from_{}.csv".format(str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H-%M-%S')))
