@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-import nmap
+import nmap3
 import socket
 import dns.resolver
 import dns.reversename

@@ -118,9 +118,14 @@ def IsValidIPv6(address):
     return True
 
 
-def log(str_text):
+def log(str_text, endline='\n', notimestamp=False):
+    if notimestamp:
+        sys.stdout.write(str(str_text) + "\n")
+        sys.stdout.flush()
+        return
+
     st = Timestamp()
-    formatted_str = ("[%s] %s\n" % (st, str_text))
+    formatted_str = ("[%s] %s%s" % (st, str_text, endline))
     sys.stdout.write(str(formatted_str))
     sys.stdout.flush()
 
@@ -128,7 +133,7 @@ def log(str_text):
 def dbg(dbg_str, alert=0):
     st = Timestamp()
     # Print time stamp only if string does not start with '[' or str is capital
-    if dbg_str[0].istitle() or dbg_str[0] is '[' or dbg_str[0] is '>':
+    if dbg_str[0].istitle() or dbg_str[0] == '[' or dbg_str[0] == '>':
         sys.stdout.write("[" + st + "] ")
 
     if alert == 1:

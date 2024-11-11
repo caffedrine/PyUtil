@@ -28,19 +28,19 @@ ICS_List_Shodan = [
 ]
 
 ICS_List_Test = [
-    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"Schneider"}, Description="Schneider Electric - ICS systems"),
+    ICS(DeviceType="ICS", DeviceName="Generic", VendorName="Schneider Electric", TcpPorts={}, UdpPorts={}, Dorks={"Schneider Electric"}, Description="Schneider Electric - ICS systems"),
 ]
 
 ICS_List_Essentials = [
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={502}, UdpPorts={}, Dorks={"port:502"}, Description="Modbus over TCP IP on port 502"),
-    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={102}, UdpPorts={}, Dorks={"port:102"}, Description="S7 (S7 Communication)"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="Phoenix Contact", TcpPorts={1962}, UdpPorts={1962}, Dorks={"port:1962 PLC"}, Description="PCWorx is a protocol and program by Phoenix Contact"),
+    ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={102}, UdpPorts={}, Dorks={"port:102 siemens"}, Description="S7 (S7 Communication)"),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={20000}, UdpPorts={20000}, Dorks={"port:20000 source address"}, Description="DNP3 (Distributed Network Protocol)"),
     ICS(DeviceType="PLC", DeviceName="Niagara", VendorName="Tridium", TcpPorts={1911,4911}, UdpPorts={1911,4911}, Dorks={"port:1911,4911 product:Niagara"}, Description="The Fox protocol, developed as part of the Niagara framework from Tridium"),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={}, UdpPorts={47808}, Dorks={"port:47808"}, Description="BACnet is a communications protocol for building automation and control networks."),
     ICS(DeviceType="PLC", DeviceName="", VendorName="", TcpPorts={44818}, UdpPorts={44818}, Dorks={"port:44818"}, Description="EtherNet/IP was introduced in 2001 and is an industrial Ethernet network solution available for manufacturing automation."),
     ICS(DeviceType="PLC", DeviceName="", VendorName="General Electric ", TcpPorts={8245,18246}, UdpPorts={8245,18246}, Dorks={"port:18245,18246 product:\"general electric\""}, Description="Service Request Transport Protocol (GE-SRTP) "),
     ICS(DeviceType="PLC", DeviceName="", VendorName="Fieldbus", TcpPorts={5094}, UdpPorts={5094}, Dorks={"port:5094 hart-ip"}, Description="The HART Communications Protocol (Highway Addressable Remote Transducer Protocol)"),
-    ICS(DeviceType="PLC", DeviceName="", VendorName="Phoenix Contact", TcpPorts={1962}, UdpPorts={1962}, Dorks={"port:1962 PLC"}, Description="PCWorx is a protocol and program by Phoenix Contact"),
     ICS(DeviceType="PLC", DeviceName="", VendorName="Mitsubichi", TcpPorts={5006,5007}, UdpPorts={5006,5007}, Dorks={"port:5006,5007 product:mitsubishi"}, Description="MELSEC-Q Series use a proprietary network protocol for communication"),
     ICS(DeviceType="PLC", DeviceName="G306a", VendorName="Red Lion Controls", TcpPorts={789}, UdpPorts={789}, Dorks={"port:789 product:\"Red Lion Controls\""}, Description="The protocol the Crimson v3.0 desktop software uses when communicating with the Red Lion Controls G306a human machine interface (HMI)."),
     ICS(DeviceType="PLC", DeviceName="", VendorName="CODESYS", TcpPorts={2455}, UdpPorts={2455}, Dorks={"port:2455 operating system"}, Description="CODESYS"),
@@ -127,7 +127,7 @@ ICS_List = [
     ICS(DeviceType="Generic", DeviceName="HMI", VendorName="Red Lion", TcpPorts={789}, UdpPorts={}, Dorks={"port:789"}, Description="Red Lion - HMI on port 789"),
     ICS(DeviceType="Generic", DeviceName="S-BUS Ethernet", VendorName="SAIA", TcpPorts={}, UdpPorts={}, Dorks={"port:5050"}, Description="SAIA - S-BUS Ethernet on port 5050"),
     ICS(DeviceType="Generic", DeviceName="XCX 300", VendorName="Schleicher", TcpPorts={}, UdpPorts={}, Dorks={"port:20547"}, Description="Schleicher - XCX 300 on port 20547"),
-    ICS(DeviceType="Generic", DeviceName="S7", VendorName="Siemens", TcpPorts={102}, UdpPorts={}, Dorks={"port:102"}, Description="Siemens - S7 on port 102"),
+    ICS(DeviceType="Generic", DeviceName="S7", VendorName="Siemens", TcpPorts={102}, UdpPorts={}, Dorks={"port:102 siemens"}, Description="Siemens - S7 on port 102"),
     ICS(DeviceType="Generic", DeviceName="TCP slave", VendorName="Unitronics", TcpPorts={20256, 20257}, UdpPorts={}, Dorks={"port:20256,20257"}, Description="Unitronics - TCP slave on port 20256"),
     ICS(DeviceType="Generic", DeviceName="CODESYS – TCP", VendorName="Wago", TcpPorts={}, UdpPorts={}, Dorks={"port:2455"}, Description="Wago - CODESYS – TCP on port 2455"),
     # ICS(DeviceType="Generic", DeviceName="MP Series Ethernet", VendorName="YASKAWA", TcpPorts={}, UdpPorts={}, Dorks={"port:10000"}, Description="YASKAWA - MP Series Ethernet on port 10000"),
@@ -188,7 +188,7 @@ def GetAllIcsPortsList():
 def PortToVendorDescription(protocol, port) -> Union[str, None]:
     global ICS_List
     for ics in ICS_List:
-        if protocol is 'tcp':
+        if protocol == 'tcp':
             if int(port) in ics.TcpPorts:
                 return ics.Description
         else:
@@ -200,7 +200,7 @@ def PortToVendorDescription(protocol, port) -> Union[str, None]:
 def PortToVendorId(protocol, port) -> Union[int, None]:
     global ICS_List
     for index, vendor in enumerate(ICS_List):
-        if protocol is 'tcp':
+        if protocol == 'tcp':
             if int(port) in vendor.TcpPorts:
                 return index
         else:

@@ -22,7 +22,7 @@ def Timestamp():
 def dbg(dbg_str, alert=0):
     st = Timestamp()
     # Print time stamp only if string does not start with '[' or str is capital
-    if dbg_str[0].istitle() or dbg_str[0] is '[' or dbg_str[0] is '>':
+    if dbg_str[0].istitle() or dbg_str[0] == '[' or dbg_str[0] == '>':
         sys.stdout.write("[" + st + "] ")
 
     if alert == 1:
@@ -61,7 +61,6 @@ class ShodanResult:
         self.Loc_Longitude = ""
         self.Loc_CountryCode = ""
         self.Loc_CountryName = ""
-        self.Loc_PostalCode = ""
 
     def GetCsvHeader(self):
         result_attributes = [attr for attr in self.__dict__.keys() if not attr.startswith('__')]
@@ -140,14 +139,14 @@ class ShodanService:
                         match.Loc_Longitude = result['location']['longitude']
                         match.Loc_Longitude = result['location']['longitude']
                         match.Loc_CountryCode = result['location']['country_code']
-                        match.Loc_PostalCode = result['location']['postal_code']
                         Ret.append(match)
                     except Exception as e:
                         dbgln("Error: failed to parse results for dork '{}': {}".format(dork, e), alert=1)
-            # Shodan only allows one request per second
-            if total_pages > 1 and i+1 < total_pages:
-                # dbgln("[PyShodan] Waiting 1 sec...")
-                time.sleep(1.1)
+
+                # Shodan only allows one request per second
+                if total_pages > 1 and (i+1) < total_pages:
+                    ##dbgln("[PyShodan] Waiting 1 sec...")
+                    time.sleep(1.1)
 
         except shodan.APIError as e:
             dbgln("Error when fetching results for dork '{}': {}".format(dork, e), alert=1)
